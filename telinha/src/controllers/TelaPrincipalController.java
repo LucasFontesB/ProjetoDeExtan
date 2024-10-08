@@ -2,6 +2,7 @@ package controllers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 
 import application.Conectar_Banco_Dados;
@@ -63,16 +64,50 @@ public class TelaPrincipalController {
 
     @FXML
     void Abrir_Menu_Configuracao(ActionEvent event) {
-    	try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_configs.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Gerenciador De Passeios");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (Exception erro_ao_abrir_tela_principal) {
-        	erro_ao_abrir_tela_principal.printStackTrace();
+    	int id_usuario = LoginController.Get_Id_Usuario_Logado();
+    	
+    	System.out.println("Verificando Se Usuario É ADM...");
+    	System.out.print("\n============== LOG DE VERIFICAÇÃO DE ADM ==============\n\n");
+		String sql_verificar_adm = "SELECT adm FROM usuarios WHERE id_usuario = ?";
+        PreparedStatement ps_verificar_adm = null;
+        Connection conn_verificar_adm = null;
+        
+        try {
+        	conn_verificar_adm = Conectar_Banco_Dados.getConnection();
+            System.out.println("\nConexão estabelecida com sucesso para Verificar Se Usuario é ADM: " + (conn_verificar_adm != null));
+            ps_verificar_adm = conn_verificar_adm.prepareStatement(sql_verificar_adm);
+            ps_verificar_adm.setObject(1, id_usuario);
+            ResultSet resultado_consulta_adm = ps_verificar_adm.executeQuery();
+            
+            if(resultado_consulta_adm.next()) {
+            	int isADM = resultado_consulta_adm.getInt(1);
+            	if (isADM == 1) {
+            		try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_configs.fxml"));
+                        Parent root = fxmlLoader.load();
+                        Stage stage = new Stage();
+                        stage.setTitle("Gerenciador De Passeios");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    } catch (Exception erro_ao_abrir_tela_principal) {
+                    	erro_ao_abrir_tela_principal.printStackTrace();
+                    }
+            		System.out.print("O usuario: "+id_usuario+" é ADM");
+            	}else {
+            		Alert usuario_nao_adm = new Alert(AlertType.WARNING);
+            		usuario_nao_adm.setTitle("Aviso!");
+            		usuario_nao_adm.setHeaderText(null);
+            		usuario_nao_adm.setContentText("O usuario não tem as permissões para acessar esta opção!");
+            		usuario_nao_adm.showAndWait();
+            		System.out.print("O usuario: "+id_usuario+" NÃO é ADM");
+            	}
+            }
+           
+        }catch (Exception erro_ao_definir_usuario_logado) {
+      	  erro_ao_definir_usuario_logado.printStackTrace();
         }
+        
+        System.out.print("\n\n========== FIM DO LOG DE VERIFICAÇÃO DE ADM ===========\n\n");
     }
 
     @FXML

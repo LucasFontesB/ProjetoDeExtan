@@ -74,7 +74,7 @@ public class LoginController {
       
             try {
                conn = Conectar_Banco_Dados.getConnection();
-               System.out.println("\nConexão estabelecida com sucesso para verificar se o usuario existe: " + (conn != null));
+               System.out.println("Conexão estabelecida com sucesso para verificar se o usuario existe: " + (conn != null));
                ps = conn.prepareStatement(sql);
                ps.setString(1, senha);
                ResultSet resultado = ps.executeQuery();
@@ -182,14 +182,14 @@ public class LoginController {
 					     		             }
 					     		              
 					     		              LocalDateTime data_hora_atual = LocalDateTime.now();
-					     		              System.out.println("Registrando Horário Inicial No Registra Turno...\n");
+					     		              System.out.println("\nRegistrando Horário Inicial No Registra Turno...\n");
 				                    		  String sql_registrar_horario_registra_turno = "INSERT INTO registros_turnos (horario_inicio, id_usuario) VALUES (?, ?)";
 						                      PreparedStatement ps_registrar_horario_registra_turno = null;
 						                      Connection conn_registrar_horario_registra_turno = null;
 						                      
 						                      try {
 						                    	  conn_registrar_horario_registra_turno = Conectar_Banco_Dados.getConnection();
-							                      System.out.println("Conexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_registrar_horario_registra_turno != null));
+							                      System.out.println("\nConexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_registrar_horario_registra_turno != null));
 							                      ps_registrar_horario_registra_turno = conn_registrar_horario_registra_turno.prepareStatement(sql_registrar_horario_registra_turno);
 							                      ps_registrar_horario_registra_turno.setObject(1, data_hora_atual);
 							                      ps_registrar_horario_registra_turno.setInt(2, id_usuario);
