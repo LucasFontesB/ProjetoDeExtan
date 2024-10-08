@@ -2569,3 +2569,12 @@ org.eclipse.jdt.internal.compiler.problem.AbortCompilation: Pb(347) The type com
 
 !ENTRY com.vaadin.designer2 1 0 2024-10-08 13:32:38.472
 !MESSAGE Status code for request is 204
+
+!ENTRY org.eclipse.epp.mpc.ui 4 0 2024-10-08 13:38:41.500
+!MESSAGE bundle org.eclipse.epp.mpc.ui:1.10.3.v20240228-1000 (1349)[org.eclipse.epp.mpc.ui.resources(43)] : deactivate method [deactivate] not found; Component will fail
+
+!ENTRY com.vaadin.designer2 1 0 2024-10-08 13:38:41.523
+!MESSAGE Jetty stopped at http://null:0
+
+!ENTRY com.vaadin.designer2 1 0 2024-10-08 13:38:41.524
+!MESSAGE Removed all models from server.
