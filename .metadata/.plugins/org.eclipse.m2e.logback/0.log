@@ -1,0 +1,61 @@
+2024-10-03 12:57:01,651 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-10-03 13:05:11,626 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-10-03 13:22:01,115 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-10-03 14:09:22,260 [Worker-52: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:myapplication:1.0-SNAPSHOT @ C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\pom.xml.
+2024-10-03 14:09:22,260 [Worker-38: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:myapplication:1.0-SNAPSHOT @ C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\pom.xml.
+2024-10-03 14:09:25,517 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Updating theme VAADIN\themes\mytheme
+2024-10-03 14:09:27,023 [Thread-161] INFO  o.e.m.c.i.embedder.EclipseLogger - Widgetsets found from classpath:
+2024-10-03 14:09:27,024 [Thread-161] INFO  o.e.m.c.i.embedder.EclipseLogger - Addon styles found from classpath:
+2024-10-03 14:09:27,024 [Thread-161] INFO  o.e.m.c.i.embedder.EclipseLogger - 
+2024-10-03 14:09:27,024 [Thread-161] INFO  o.e.m.c.i.embedder.EclipseLogger - Search took 10ms
+2024-10-03 14:09:27,094 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Theme "VAADIN\themes\mytheme" updated
+2024-10-03 14:09:27,110 [Worker-38: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - GWT plugin is configured to detect modules, but none were found.
+2024-10-03 14:09:27,111 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - No widgetsets found - generating AppWidgetset if necessary.
+2024-10-03 14:09:27,113 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Updating widgetset AppWidgetset
+2024-10-03 14:09:27,114 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Adding resource directory to command classpath: C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\src\main\resources
+2024-10-03 14:09:27,114 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Adding resource directory to command classpath: C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\target\generated-resources\gwt
+2024-10-03 14:09:27,118 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using com.vaadin:vaadin-client version 7.7.10
+2024-10-03 14:09:27,390 [Worker-38: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using com.vaadin:vaadin-client-compiler version 7.7.10
+2024-10-03 14:09:28,775 [Thread-163] INFO  o.e.m.c.i.embedder.EclipseLogger - Widgetsets found from classpath:
+2024-10-03 14:09:28,775 [Thread-163] INFO  o.e.m.c.i.embedder.EclipseLogger - 	com.vaadin.DefaultWidgetSet in jar:file:C:/Users/SERVIDOR/.m2/repository/com/vaadin/vaadin-client/7.7.10/vaadin-client-7.7.10.jar!/
+2024-10-03 14:09:28,775 [Thread-163] INFO  o.e.m.c.i.embedder.EclipseLogger - Addon styles found from classpath:
+2024-10-03 14:09:28,775 [Thread-163] INFO  o.e.m.c.i.embedder.EclipseLogger - 
+2024-10-03 14:09:28,775 [Thread-163] INFO  o.e.m.c.i.embedder.EclipseLogger - Search took 9ms
+2024-10-03 14:09:28,994 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-10-03 14:09:28,999 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from target\generated-resources\gwt to target\classes
+2024-10-03 14:09:29,004 [Worker-38: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\src\test\resources
+2024-10-03 14:09:30,377 [Worker-45: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:myapplication:1.0-SNAPSHOT @ C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\pom.xml.
+2024-10-03 14:16:31,160 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-10-03 14:16:31,165 [Worker-54: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\src\test\resources
+2024-10-03 14:23:54,954 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-10-03 14:33:16,541 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-10-03 14:58:53,297 [Worker-34: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:myapplication:1.0-SNAPSHOT @ C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\pom.xml.
+2024-10-03 14:58:53,297 [Worker-35: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:myapplication:1.0-SNAPSHOT @ C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\pom.xml.
+2024-10-03 14:58:56,091 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Updating theme VAADIN\themes\mytheme
+2024-10-03 14:58:56,519 [Thread-647] INFO  o.e.m.c.i.embedder.EclipseLogger - Widgetsets found from classpath:
+2024-10-03 14:58:56,519 [Thread-647] INFO  o.e.m.c.i.embedder.EclipseLogger - Addon styles found from classpath:
+2024-10-03 14:58:56,519 [Thread-647] INFO  o.e.m.c.i.embedder.EclipseLogger - 
+2024-10-03 14:58:56,519 [Thread-647] INFO  o.e.m.c.i.embedder.EclipseLogger - Search took 6ms
+2024-10-03 14:58:56,548 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Theme "VAADIN\themes\mytheme" updated
+2024-10-03 14:58:56,559 [Worker-34: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - GWT plugin is configured to detect modules, but none were found.
+2024-10-03 14:58:56,561 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - No widgetsets found - generating AppWidgetset if necessary.
+2024-10-03 14:58:56,563 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Updating widgetset AppWidgetset
+2024-10-03 14:58:56,563 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Adding resource directory to command classpath: C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\src\main\resources
+2024-10-03 14:58:56,563 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Adding resource directory to command classpath: C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\target\generated-resources\gwt
+2024-10-03 14:58:56,567 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using com.vaadin:vaadin-client version 7.7.10
+2024-10-03 14:58:56,799 [Worker-34: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using com.vaadin:vaadin-client-compiler version 7.7.10
+2024-10-03 14:58:57,569 [Thread-649] INFO  o.e.m.c.i.embedder.EclipseLogger - Widgetsets found from classpath:
+2024-10-03 14:58:57,569 [Thread-649] INFO  o.e.m.c.i.embedder.EclipseLogger - 	com.vaadin.DefaultWidgetSet in jar:file:C:/Users/SERVIDOR/.m2/repository/com/vaadin/vaadin-client/7.7.10/vaadin-client-7.7.10.jar!/
+2024-10-03 14:58:57,569 [Thread-649] INFO  o.e.m.c.i.embedder.EclipseLogger - Addon styles found from classpath:
+2024-10-03 14:58:57,569 [Thread-649] INFO  o.e.m.c.i.embedder.EclipseLogger - 
+2024-10-03 14:58:57,569 [Thread-649] INFO  o.e.m.c.i.embedder.EclipseLogger - Search took 10ms
+2024-10-03 14:58:57,819 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-10-03 14:58:57,826 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from target\generated-resources\gwt to target\classes
+2024-10-03 14:58:57,832 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\src\test\resources
+2024-10-03 14:58:59,272 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-10-03 14:58:59,280 [Worker-34: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\src\test\resources
+2024-10-03 14:58:59,371 [Worker-35: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.example:myapplication:1.0-SNAPSHOT @ C:\Users\SERVIDOR\Desktop\Lucas\PESSOAL\Nova pasta (2)\myapplication\pom.xml.
+2024-10-05 09:11:32,577 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2024-10-05 14:06:53,200 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-10-08 09:29:02,975 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-10-08 09:31:26,429 [Worker-7: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

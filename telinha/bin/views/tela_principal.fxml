@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TelaPrincipalController">
+   <children>
+      <Separator layoutX="141.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="2.0" />
+      <Button fx:id="botao_novo_passeio" layoutX="6.0" layoutY="10.0" mnemonicParsing="false" onAction="#Adicionar_Novo_Passeio" prefHeight="57.0" prefWidth="130.0" text="Novo Passeio">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="botao_configuracao" layoutX="6.0" layoutY="82.0" mnemonicParsing="false" onAction="#Abrir_Menu_Configuracao" prefHeight="57.0" prefWidth="130.0" text="Configurações">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="botao_sair" layoutX="30.0" layoutY="295.0" mnemonicParsing="false" onAction="#Sair_Conta" prefHeight="25.0" prefWidth="82.0" text="Sair">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <TextField fx:id="barra_busca" layoutX="184.0" layoutY="14.0" prefHeight="25.0" prefWidth="277.0" />
+      <Button fx:id="botao_pesquisar" layoutX="475.0" layoutY="14.0" mnemonicParsing="false" onAction="#Pesquisar" text="Pesquisar" />
+      <Pane layoutX="155.0" layoutY="62.0" prefHeight="304.0" prefWidth="200.0" style="-fx-background-color: black;" />
+      <Pane layoutX="386.0" layoutY="62.0" prefHeight="304.0" prefWidth="200.0" style="-fx-background-color: black;" />
+      <Label layoutX="9.0" layoutY="358.0" text="Usuario:" />
+      <Label fx:id="label_usuario_conectado" layoutX="52.0" layoutY="358.0" prefHeight="17.0" prefWidth="82.0" text="Label" />
+   </children>
+</Pane>
