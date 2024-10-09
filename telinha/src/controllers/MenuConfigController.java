@@ -21,7 +21,16 @@ public class MenuConfigController {
 
     @FXML
     void Adicionar_Colaborador(ActionEvent event) {
-
+    	try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_adicionarColaborador.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Adicionar Usuarios");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception erro_ao_abrir_tela_principal) {
+        	erro_ao_abrir_tela_principal.printStackTrace();
+        }
     }
 
     @FXML

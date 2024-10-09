@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="2"/>
 	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-22"/>
-	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\SERVIDOR\Desktop\JAVAFX\telinha\lib\mysql-connector-j-9.0.0"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\SERVIDOR\Desktop\javafx-sdk-23\lib"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -24,7 +24,7 @@
 	<section name="JavaElementSearchActions">
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item key="pageIndex" value="0"/>
+		<item key="pageIndex" value="4"/>
 	</section>
 	<section name="NewClassCreationWizard.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="681"/>
@@ -78,5 +78,8 @@
 	</section>
 	<section name="NewPackageWizardPage">
 		<item key="create_package_info_java" value="false"/>
+	</section>
+	<section name="WorkingSetModelAwareSelectionDialog">
+		<item key="ShowVisibleOnly" value="true"/>
 	</section>
 </section>
