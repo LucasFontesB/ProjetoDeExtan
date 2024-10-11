@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 public class App extends Application{
 
     public static void main(String[] args) {
+    	Connection conn = Conectar_Banco_Dados.getConnection();
+    	System.out.print("Sua conexão com o banco: "+conn);
        List<Integer> ids_com_turnos_abertos = new ArrayList<>();
        System.out.println("Iniciando Verificação De Turnos Abertos...\n");
        System.out.println("============== LOG DE TURNOS ABERTOS ==============\n");

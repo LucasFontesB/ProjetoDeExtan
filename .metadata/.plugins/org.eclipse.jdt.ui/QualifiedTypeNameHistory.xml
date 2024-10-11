@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="application.Formatar_Datas"/>
 </qualifiedTypeNameHistroy>
