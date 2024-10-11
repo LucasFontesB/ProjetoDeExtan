@@ -70,7 +70,16 @@ public class TelaPrincipalController {
 
     @FXML
     void Adicionar_Novo_Passeio(ActionEvent event) {
-
+    	try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_adicionarPasseio.fxml"));
+            Parent root = fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("Gerenciador De Passeios");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception erro_ao_abrir_tela_principal) {
+        	erro_ao_abrir_tela_principal.printStackTrace();
+        }
     }
 
     @FXML
@@ -295,11 +304,11 @@ public class TelaPrincipalController {
             	int idPasseio = resultado_pesquisa.getInt("id_passeio");
                 String nomeHospede = resultado_pesquisa.getString("nome_do_hospede");
                 String dataPasseio = resultado_pesquisa.getString("data_do_passeio");
-                String dataPasseio_formatada = Formatar_Datas.Formatar(dataPasseio);
+                String dataPasseio_formatada = Formatar_Datas.Formatar_Para_Usuario(dataPasseio);
                 double valor = resultado_pesquisa.getDouble("valor");
                 String tipoPasseio = resultado_pesquisa.getString("id_tipo_passeio");
                 String dataRegistro = resultado_pesquisa.getString("data_de_registro_passeio");
-                String dataRegistro_formatada = Formatar_Datas.Formatar(dataRegistro);
+                String dataRegistro_formatada = Formatar_Datas.Formatar_Para_Usuario(dataRegistro);
                 String responsavel = resultado_pesquisa.getString("id_responsavel_registro_passeio");
 
                 Passeio passeio = new Passeio(idPasseio, nomeHospede, dataPasseio_formatada, valor, tipoPasseio, dataRegistro_formatada, responsavel);

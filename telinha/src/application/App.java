@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -12,6 +13,8 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -21,7 +24,7 @@ public class App extends Application{
 
     public static void main(String[] args) {
     	Connection conn = Conectar_Banco_Dados.getConnection();
-    	System.out.print("Sua conexão com o banco: "+conn);
+    	System.out.println("Sua conexão com o banco: "+conn);
        List<Integer> ids_com_turnos_abertos = new ArrayList<>();
        System.out.println("Iniciando Verificação De Turnos Abertos...\n");
        System.out.println("============== LOG DE TURNOS ABERTOS ==============\n");
@@ -34,7 +37,6 @@ public class App extends Application{
            System.out.println("\nConexão estabelecida com sucesso para Verificar Turnos Abertos: " + (conn_verificar_ids_turnos_abertos != null));
            ps_verificar_ids_turnos_abertos = conn_verificar_ids_turnos_abertos.prepareStatement(sql_verificar_ids_turnos_abertos);
            ResultSet id_usuario_achado_turnos_abertos = ps_verificar_ids_turnos_abertos.executeQuery();
-           
            
            while(id_usuario_achado_turnos_abertos.next()) {
          	  int id_usuario = id_usuario_achado_turnos_abertos.getInt(1);
@@ -88,9 +90,7 @@ public class App extends Application{
     			                    System.out.print("Fechamento Automatico Do Turno Do Usuario Com ID: "+id_usuario+" Foi Realizado Com Sucesso!");
     		                    }catch (Exception erro_ao_definir_usuario_logado) {
     		                    	erro_ao_definir_usuario_logado.printStackTrace();
-    		                    }
-                    	    	
-                    	    	
+    		                    }	    	
                     	    }else {
                     	    	System.out.print("A diferença de horas do primeiro login do usuario com ID: " + id_usuario + " É de: " + diffHoras + " Horas. Seu turno NÃO será automaticamente fechado\n");
                     	    }
@@ -102,8 +102,8 @@ public class App extends Application{
                }
                
                System.out.println("\n========== FIM DO LOG DE TURNOS ABERTOS ===========\n");
-           }}catch (Exception erro_ao_definir_usuario_logado) {
-         	  erro_ao_definir_usuario_logado.printStackTrace();
+           }}catch (Exception erro_ao_buscar_turnos_abertos) {
+        	   erro_ao_buscar_turnos_abertos.printStackTrace();
            }
        		launch(args);
        }

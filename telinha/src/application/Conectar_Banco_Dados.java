@@ -37,7 +37,7 @@ public class Conectar_Banco_Dados {
              erro_na_conexao = true;
          }catch (SQLException sqlEx) {
              sqlEx.printStackTrace();
-             throw new RuntimeException("Erro na conexão com o banco de dados", sqlEx);
+             throw new RuntimeException("Erro na conexão com o banco de dados - ", sqlEx);
           }
       }
 
