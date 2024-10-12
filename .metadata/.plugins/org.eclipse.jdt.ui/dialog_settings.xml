@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="org.eclipse.jdt.ui.last.selected.jre.kind2" value="2"/>
 	<item key="org.eclipse.jdt.ui.last.selected.execution.enviroment" value="JavaSE-22"/>
-	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\SERVIDOR\Desktop\javafx-sdk-23\lib"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="C:\Users\Madara\OneDrive\Área de Trabalho\openjfx-23_windows-x64_bin-sdk\javafx-sdk-23\lib"/>
 	<section name="org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart">
 		<item key="group_libraries" value="true"/>
 		<item key="layout" value="2"/>
@@ -24,7 +24,7 @@
 	<section name="JavaElementSearchActions">
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item key="pageIndex" value="4"/>
+		<item key="pageIndex" value="2"/>
 	</section>
 	<section name="NewClassCreationWizard.dialogBounds">
 		<item key="DIALOG_X_ORIGIN" value="681"/>

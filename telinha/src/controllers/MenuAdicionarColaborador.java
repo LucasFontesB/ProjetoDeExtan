@@ -18,7 +18,7 @@ import application.Conectar_Banco_Dados;
 
 public class MenuAdicionarColaborador {
 	int id_usuario = LoginController.Get_Id_Usuario_Logado();
-	private static final String REGEX_TELEFONE = "^\\s?\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}$";
+	private static final String REGEX_TELEFONE = "^\\+55\\s?\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}$";
 	private static final Pattern PADRAO_TELEFONE = Pattern.compile(REGEX_TELEFONE);
 
 	public static boolean Validar_Telefone(String telefone) {

@@ -23,10 +23,8 @@ import javafx.stage.Stage;
 public class App extends Application{
 
     public static void main(String[] args) {
-    	Connection conn = Conectar_Banco_Dados.getConnection();
-    	System.out.println("Sua conexão com o banco: "+conn);
        List<Integer> ids_com_turnos_abertos = new ArrayList<>();
-       System.out.println("Iniciando Verificação De Turnos Abertos...\n");
+       System.out.println("\nIniciando Verificação De Turnos Abertos...\n");
        System.out.println("============== LOG DE TURNOS ABERTOS ==============\n");
 	   String sql_verificar_ids_turnos_abertos = "SELECT id_usuario FROM registros_turnos WHERE horario_final IS NULL";
        PreparedStatement ps_verificar_ids_turnos_abertos = null;
@@ -34,7 +32,7 @@ public class App extends Application{
        
        try {
      	   conn_verificar_ids_turnos_abertos = Conectar_Banco_Dados.getConnection();
-           System.out.println("\nConexão estabelecida com sucesso para Verificar Turnos Abertos: " + (conn_verificar_ids_turnos_abertos != null));
+           System.out.println("Conexão estabelecida com sucesso para Verificar Turnos Abertos: " + (conn_verificar_ids_turnos_abertos != null));
            ps_verificar_ids_turnos_abertos = conn_verificar_ids_turnos_abertos.prepareStatement(sql_verificar_ids_turnos_abertos);
            ResultSet id_usuario_achado_turnos_abertos = ps_verificar_ids_turnos_abertos.executeQuery();
            
@@ -48,7 +46,7 @@ public class App extends Application{
         	   System.out.println("\n========== FIM DO LOG DE TURNOS ABERTOS ===========\n");
            }else {
         	   for(int id_usuario : ids_com_turnos_abertos) {
-            	   System.out.println("\nIniciando Fechamento De Turno Do Id: " + id_usuario);
+            	   System.out.println("Iniciando Fechamento De Turno Do Id: " + id_usuario);
             	   String sql_pegar_horario_inicial = "SELECT horario_inicio FROM registros_turnos WHERE horario_final IS NULL AND id_usuario = ?";
                    PreparedStatement ps_pegar_horario_inicial = null;
                    Connection conn_pegar_horario_inicial = null;

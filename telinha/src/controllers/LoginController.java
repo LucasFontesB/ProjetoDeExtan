@@ -53,14 +53,6 @@ public class LoginController {
     @FXML
     void Validar_Login(ActionEvent event) {
     	System.out.println("\n\nBotão_Login_Pressionado\n");
-    	if(TelaPrincipalController.Get_saida() == false){
-    		System.out.println("true or false: " + TelaPrincipalController.Get_saida());
-    		id_usuario = id_usuario;
-    		System.out.print("Seu id de usuario (in false): " + id_usuario);
-    	}else {
-    		id_usuario = 0;
-    		System.out.print("Seu id de usuario (in true): " + id_usuario);
-    	}
     	String senha = campo_senha.getText();
     	String usuario = null;
     	
@@ -230,17 +222,14 @@ public class LoginController {
 		     		           }}
 		                      
 		                      try {
-		                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_principal.fxml"));
+		                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_teste.fxml"));
 		                          Parent root = fxmlLoader.load();
-		                          TelaPrincipalController controlador = fxmlLoader.getController();
-		                          controlador.setNomeUsuario(usuario);
 		                          Stage stage = new Stage();
 		                          stage.setTitle("Passeios");
 		                          stage.setScene(new Scene(root));
 		                          stage.setOnCloseRequest(e -> {
 		                              e.consume();
 		                              System.out.print("Olá");});
-		                          
 		                          stage.show();
 		                      } catch (Exception e) {
 		                          e.printStackTrace();
