@@ -13,6 +13,10 @@ public class Conectar_Banco_Dados {
    public boolean Get_Erro_Conexao() {
 		return erro_na_conexao;
    }
+   
+   public static Connection Get_Connection_Status() {
+	   return conn;
+   }
 
    static {
       try {
@@ -32,6 +36,7 @@ public class Conectar_Banco_Dados {
             conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/meu_banco", "root", "");
             System.out.println("----Conectar_Banco_Dados - Conexão sucesso---\n");
          } catch (CommunicationsException commEx) {
+        	 conn = null;
              System.err.println("Erro: Não foi possível se conectar ao banco de dados. Verifique se o XAMPP está iniciado e o MySQL está rodando.");
              commEx.printStackTrace();
              erro_na_conexao = true;
