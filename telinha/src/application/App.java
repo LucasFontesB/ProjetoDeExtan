@@ -79,7 +79,7 @@ public class App extends Application{
                        	    if(diffHoras > 12) {
                        	    	System.out.print("A diferença de horas do primeiro login do usuario com ID: " + id_usuario + " É de: " + diffHoras + " Horas. Seu turno será AUTOMATICAMENTE FECHADO\n");
                        	    	System.out.println("\nRegistrando Horário Final No Registra Turno...\n");
-                         		    String sql_registrar_horario_final_registra_turno = "UPDATE registros_turnos SET horario_final = ? WHERE id_usuario = ?";
+                         		String sql_registrar_horario_final_registra_turno = "UPDATE registros_turnos SET horario_final = ? WHERE id_usuario = ?";
        		                    PreparedStatement ps_registrar_horario_final_registra_turno = null;
        		                    Connection conn_registrar_horario_final_registra_turno = null;
        		                      
@@ -119,7 +119,7 @@ public class App extends Application{
        }
         	   
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception { 	
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_login.fxml"));
         Parent root = fxmlLoader.load();
         Scene tela = new Scene(root);

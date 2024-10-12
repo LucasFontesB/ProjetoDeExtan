@@ -11,14 +11,23 @@ import javafx.scene.control.TextField;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+
+import application.Buscar_Passeios;
+import application.Buscar_Passeios.Passeio;
+import application.Buscar_Passeios.PasseioSimplificado;
 import application.Conectar_Banco_Dados;
 
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import application.Formatar_Datas;
-
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -72,7 +81,7 @@ public class TelaController {
     private Button botao_adicionar_usuario;
 
     @FXML
-    private TextField barra_busca;
+	public TextField barra_busca;
 
     @FXML
     private TextField valor_passeio_label;
@@ -95,67 +104,56 @@ public class TelaController {
     @FXML
     private Button botao_adicionar_tipoPasseios;
     
-    public class Passeio {
-        private int idPasseio;
-        private String nomeHospede;
-        private String dataPasseio;
-        private double valor;
-        private String tipoPasseio;
-        private String dataRegistro;
-        private String responsavel;
-
-        public Passeio(int idPasseio, String nomeHospede, String dataPasseio, double valor, String tipoPasseio, String dataRegistro, String responsavel) {
-            this.idPasseio = idPasseio;
-            this.nomeHospede = nomeHospede;
-            this.dataPasseio = dataPasseio;
-            this.valor = valor;
-            this.tipoPasseio = tipoPasseio;
-            this.dataRegistro = dataRegistro;
-            this.responsavel = responsavel;
-        }
-        
-        public String toString() {
-            return "Passeio{" +
-                    "idPasseio=" + idPasseio +
-                    ", nomeHospede='" + nomeHospede + '\'' +
-                    ", dataPasseio='" + dataPasseio + '\'' +
-                    ", valor=" + valor +
-                    ", tipoPasseio='" + tipoPasseio + '\'' +
-                    ", dataRegistro='" + dataRegistro + '\'' +
-                    ", responsavel='" + responsavel + '\'' +
-                    '}';
-        }
-
-        public int getIdPasseio() { 
-        	return idPasseio; 
-        }
-        public String getNomeHospede() { 
-        	return nomeHospede;
-        }
-        public String getDataPasseio() { 
-        	return dataPasseio; 
-        }
-        public double getValor() { 
-        	return valor; 
-        }
-        public String getTipoPasseio() { 
-        	return tipoPasseio; 
-        }
-        public String getDataRegistro() { 
-        	return dataRegistro; 
-        }
-        public String getResponsavel() { 
-        	return responsavel; 
-        }
+    public static boolean fazer_busca;
+    
+    public static boolean Get_Busca_Inicial() {
+    	fazer_busca = true;
+    	return fazer_busca;
     }
+    
+    public static void Set_Busca_Inicial_False() {
+    	fazer_busca = false;
+    }
+    
+    public static void Set_Busca_Inicial_True() {
+    	fazer_busca = true;
+    }
+    
+    @FXML
+    private TableView<PasseioSimplificado> tabela_passeios_futuros;
+    @FXML
+    private TableColumn<PasseioSimplificado, Integer> idPasseioColumn;
+    @FXML
+    private TableColumn<PasseioSimplificado, String> nomeHospedeColumn;
+    @FXML
+    private TableColumn<PasseioSimplificado, String> dataPasseioColumn;
+    @FXML
+    private TableColumn<PasseioSimplificado, String> tipoPasseioColumn;
+    @FXML
+    private TableColumn<PasseioSimplificado, Integer> statusPasseioColumn;
+    
+    public TableView<PasseioSimplificado> Get_TabelaPrincipal() {
+    	return tabela_passeios_futuros;
+    }
+   
     
     @FXML
     public void initialize() {
         System.out.println("Tela carregada!");
-        verificar_adm(null);
+        verificar_adm(null);   
+        
+        idPasseioColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdPasseioSimplificado()));
+        nomeHospedeColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNomeHospedeSimplificado()));
+        dataPasseioColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDataPasseioSimplificado()));
+        tipoPasseioColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipoPasseioSimplificado()));
+        statusPasseioColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getStatusSimplificado()));
+        
+        Platform.runLater(() -> {
+            Buscar_Passeios.BuscarSimplificado(this, null);
+        });
     }
     
-    String Get_Tipo_Passeio(String id_tipo_passeio) {
+    public static String Get_Tipo_Passeio(String id_tipo_passeio) {
     	String tipo_passeio = null;
     	
     	System.out.println("Buscando Tipo De Passeio...\n");
@@ -174,7 +172,7 @@ public class TelaController {
             	tipo_passeio = busca_tipo_passeio.getString(1);
             }
             
-            System.out.println("Busca De Tipo De Passeio Realizada Com Sucesso!");
+            System.out.println("Busca De Tipo De Passeio Realizada Com Sucesso!\n");
         }catch (Exception erro_ao_definir_usuario_logado) {
         	  erro_ao_definir_usuario_logado.printStackTrace();
         }
@@ -184,94 +182,12 @@ public class TelaController {
     @FXML
     void Pesquisar(ActionEvent event) {
     	String item_pesquisa = barra_busca.getText();
-    	TableView<Passeio> tabela_resultado = new TableView<>();
-    	
-    	TableColumn<Passeio, Integer> idColumn = new TableColumn<>("ID Passeio");
-        TableColumn<Passeio, String> nomeColumn = new TableColumn<>("Nome do Hóspede");
-        TableColumn<Passeio, String> dataColumn = new TableColumn<>("Data do Passeio");
-        TableColumn<Passeio, Double> valorColumn = new TableColumn<>("Valor");
-        TableColumn<Passeio, String> tipoColumn = new TableColumn<>("Tipo do Passeio");
-        TableColumn<Passeio, String> registroColumn = new TableColumn<>("Data de Registro");
-        TableColumn<Passeio, String> responsavelColumn = new TableColumn<>("Responsável");
-        
-        idColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdPasseio()));
-        nomeColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNomeHospede()));
-        dataColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDataPasseio()));
-        valorColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getValor()));
-        tipoColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getTipoPasseio()));
-        registroColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getDataRegistro()));
-        responsavelColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getResponsavel()));
-        
-        tabela_resultado.getColumns().addAll(idColumn, nomeColumn, dataColumn, valorColumn, tipoColumn, registroColumn, responsavelColumn);
-    	
-        System.out.println("Iniciando Busca De Passeio...\n");
-        System.out.print("========= LOG DE BUSCA =========\n\n");
-		String sql_busca = "SELECT id_passeio, nome_do_hospede, data_do_passeio, valor, id_tipo_passeio, data_de_registro_passeio, id_responsavel_registro_passeio FROM passeios WHERE nome_do_hospede LIKE ? OR data_do_passeio LIKE ? OR id_passeio LIKE ?";
-        PreparedStatement ps_busca = null;
-        Connection conn_busca= null;
-        
-        try {
-        	conn_busca = Conectar_Banco_Dados.getConnection();
-            System.out.println("\nConexão estabelecida com sucesso para Pesquisa: " + (conn_busca != null));
-            ps_busca = conn_busca.prepareStatement(sql_busca);
-            ps_busca.setString(1, "%"+item_pesquisa+"%");
-            ps_busca.setString(2, "%"+item_pesquisa+"%");
-            ps_busca.setString(3, "%"+item_pesquisa+"%");
-            ResultSet resultado_pesquisa = ps_busca.executeQuery();
-            if(item_pesquisa.isEmpty()) {
-            	System.out.println("Iniciando Busca Para Todos Os Passeios");
-            }else {
-                System.out.print("Iniciando Busca para: "+item_pesquisa);
-            }
-            ObservableList<Passeio> passeios = FXCollections.observableArrayList();
-            
-            while(resultado_pesquisa.next()) {
-            	int idPasseio = resultado_pesquisa.getInt("id_passeio");
-                String nomeHospede = resultado_pesquisa.getString("nome_do_hospede");
-                String dataPasseio = resultado_pesquisa.getString("data_do_passeio");
-                String dataPasseio_formatada = Formatar_Datas.Formatar_Para_Usuario(dataPasseio);
-                double valor = resultado_pesquisa.getDouble("valor");
-                String tipoPasseio = resultado_pesquisa.getString("id_tipo_passeio");
-                String nome_passeio = Get_Tipo_Passeio(tipoPasseio);
-                String dataRegistro = resultado_pesquisa.getString("data_de_registro_passeio");
-                String dataRegistro_formatada = Formatar_Datas.Formatar_Para_Usuario(dataRegistro);
-                String responsavel = resultado_pesquisa.getString("id_responsavel_registro_passeio");
-
-                Passeio passeio = new Passeio(idPasseio, nomeHospede, dataPasseio_formatada, valor, nome_passeio, dataRegistro_formatada, responsavel);
-                
-                passeios.add(passeio);
-            }
-            if (passeios.isEmpty()) {
-            	System.out.print("\n\nNenhum Dado Encontrado Para: "+item_pesquisa+"\n");
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Tabela Vazia");
-                alert.setHeaderText(null);
-                alert.setContentText("Não Foi Encontrada Nenhuma Reserva Com Esses Dados Informados!");
-                alert.showAndWait();
-            }else {
-            	if(item_pesquisa.isEmpty()) {
-            		System.out.print("Mostando Todas As Reservas De Passeios");
-            	}else {
-            		System.out.print("\nDados Encontrados Para: "+item_pesquisa+". Iniciando Tabela...\n");
-            	}
-            	tabela_resultado.setItems(passeios);
-                
-                VBox layout = new VBox(10, tabela_resultado);
-                Scene scene = new Scene(layout, 800, 400);
-                Stage stage = new Stage();
-                stage.setScene(scene);
-                stage.setTitle("Exibição de Passeios");
-                stage.show();
-                System.out.println("Tabela Inciada Com Sucesso!");
-            }  
-            System.out.println("\n===== FIM DO LOG DE BUSCA ======\n");
-        }catch (Exception erro_ao_pesquisar) {
-            erro_ao_pesquisar.printStackTrace();
-        }
+    	Buscar_Passeios.BuscarSimplificado(this, item_pesquisa);
     }
 
     @FXML
     void Sair_Conta(ActionEvent event) {
+    	TelaController.Set_Busca_Inicial_True();
     	int id_usuario = LoginController.Get_Id_Usuario_Logado();
     	
     	LocalDateTime data_hora_atual = LocalDateTime.now();

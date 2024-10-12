@@ -5,20 +5,28 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controllers.TelaController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TelaController">
   <tabs>
     <Tab fx:id="tab_home" text="Home">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="833.0">
                <children>
-                  <TextField fx:id="barra_busca" layoutX="78.0" layoutY="14.0" prefHeight="25.0" prefWidth="416.0" />
-                  <Button fx:id="botao_pesquisar" layoutX="505.0" layoutY="14.0" mnemonicParsing="false" onAction="#Pesquisar" text="Pesquisar" />
-                  <Button fx:id="botao_sair" layoutX="14.0" layoutY="322.0" mnemonicParsing="false" onAction="#Sair_Conta" text="Sair">
+                  <TextField fx:id="barra_busca" layoutX="132.0" layoutY="20.0" prefHeight="25.0" prefWidth="416.0" />
+                  <Button fx:id="botao_pesquisar" layoutX="573.0" layoutY="20.0" mnemonicParsing="false" onAction="#Pesquisar" text="Pesquisar" />
+                  <Button fx:id="botao_sair" layoutX="14.0" layoutY="483.0" mnemonicParsing="false" onAction="#Sair_Conta" text="Sair">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Pane layoutX="78.0" layoutY="53.0" prefHeight="304.0" prefWidth="494.0" style="-fx-background-color: black;" />
+                  <TableView fx:id="tabela_passeios_futuros" layoutX="73.0" layoutY="56.0" prefHeight="458.0" prefWidth="629.0">
+                    <columns>
+                      <TableColumn fx:id="idPasseioColumn" prefWidth="63.0" text="ID Passeio" />
+                      <TableColumn fx:id="nomeHospedeColumn" prefWidth="235.0" text="Nome Hospede" />
+                        <TableColumn fx:id="dataPasseioColumn" prefWidth="116.0" text="Data Do Passeio" />
+                        <TableColumn fx:id="tipoPasseioColumn" prefWidth="135.0" text="Tipo Do Passeio" />
+                        <TableColumn fx:id="statusPasseioColumn" prefWidth="88.0" text="Status" />
+                    </columns>
+                  </TableView>
                </children></AnchorPane>
       </content>
     </Tab>
