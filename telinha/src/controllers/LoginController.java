@@ -52,14 +52,14 @@ public class LoginController {
 
     @FXML
     void Validar_Login(ActionEvent event) {
-    	System.out.println("\n\nBotão_Login_Pressionado\n");
+    	System.out.println("\nBotão_Login_Pressionado\n");
     	String senha = campo_senha.getText();
     	String usuario = null;
     	
     	if(campo_senha.getText().isEmpty()) {
     		campo_senha.setStyle("-fx-border-color: red");
     	}else {
-    		System.out.print("\n\n============= LOG DE LOGIN ==============\n\n");
+    		System.out.print("\n============= LOG DE LOGIN ==============\n\n");
     		String sql = "SELECT EXISTS (SELECT * FROM usuarios WHERE senha = ?)";
             PreparedStatement ps = null;
             Connection conn = null;
@@ -136,7 +136,7 @@ public class LoginController {
 
 		                      try {
 		                    	  conn_esta_logado = Conectar_Banco_Dados.getConnection();
-			                      System.out.println("\nConexão estabelecida com sucesso para buscar se usuario está logado: " + (conn_esta_logado != null));
+			                      System.out.println("Conexão estabelecida com sucesso para buscar se usuario está logado: " + (conn_esta_logado != null));
 			                      ps_esta_logado = conn_esta_logado.prepareStatement(consulta_esta_logado);
 			                      ps_esta_logado.setInt(1, id_usuario);
 			                      ResultSet resultado_esta_logado = ps_esta_logado.executeQuery();
@@ -181,7 +181,7 @@ public class LoginController {
 						                      
 						                      try {
 						                    	  conn_registrar_horario_registra_turno = Conectar_Banco_Dados.getConnection();
-							                      System.out.println("\nConexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_registrar_horario_registra_turno != null));
+							                      System.out.println("Conexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_registrar_horario_registra_turno != null));
 							                      ps_registrar_horario_registra_turno = conn_registrar_horario_registra_turno.prepareStatement(sql_registrar_horario_registra_turno);
 							                      ps_registrar_horario_registra_turno.setObject(1, data_hora_atual);
 							                      ps_registrar_horario_registra_turno.setInt(2, id_usuario);
@@ -229,7 +229,7 @@ public class LoginController {
 		                          stage.setScene(new Scene(root));
 		                          stage.setOnCloseRequest(e -> {
 		                              e.consume();
-		                              System.out.print("Olá");});
+		                              System.out.println("Não é possível fechar a janela principal");});
 		                          stage.show();
 		                      } catch (Exception e) {
 		                          e.printStackTrace();

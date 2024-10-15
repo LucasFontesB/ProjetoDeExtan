@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import application.Formatar_Datas;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
@@ -47,6 +48,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 public class TelaController {
 
@@ -90,9 +92,6 @@ public class TelaController {
     private ComboBox<?> menu_tipo_passeio;
 
     @FXML
-    private Button botao_pesquisar;
-
-    @FXML
     private TextField valor_pago_label;
 
     @FXML
@@ -130,17 +129,23 @@ public class TelaController {
     @FXML
     private TableColumn<PasseioSimplificado, String> tipoPasseioColumn;
     @FXML
-    private TableColumn<PasseioSimplificado, Integer> statusPasseioColumn;
+    private TableColumn<PasseioSimplificado, String> statusPasseioColumn;
     
     public TableView<PasseioSimplificado> Get_TabelaPrincipal() {
     	return tabela_passeios_futuros;
     }
    
-    
     @FXML
     public void initialize() {
+    	PauseTransition Timer_Para_Pesquisa = new PauseTransition(Duration.millis(750));
         System.out.println("Tela carregada!");
         verificar_adm(null);   
+        
+        barra_busca.setOnKeyReleased(event -> {
+            String item_pesquisa = barra_busca.getText();
+            Timer_Para_Pesquisa.setOnFinished(e -> Buscar_Passeios.BuscarSimplificado(this, item_pesquisa));
+            Timer_Para_Pesquisa.playFromStart();
+        });
         
         idPasseioColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdPasseioSimplificado()));
         nomeHospedeColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getNomeHospedeSimplificado()));
@@ -151,38 +156,6 @@ public class TelaController {
         Platform.runLater(() -> {
             Buscar_Passeios.BuscarSimplificado(this, null);
         });
-    }
-    
-    public static String Get_Tipo_Passeio(String id_tipo_passeio) {
-    	String tipo_passeio = null;
-    	
-    	System.out.println("Buscando Tipo De Passeio...\n");
-		String sql_buscar_tipo_passeio = "SELECT tipos_passeios.descricao FROM meu_banco.tipos_passeios WHERE id_tipo_passeio = ?";
-        PreparedStatement ps_buscar_tipo_passeio = null;
-        Connection conn_buscar_tipo_passeio = null;
-        
-        try {
-        	conn_buscar_tipo_passeio = Conectar_Banco_Dados.getConnection();
-            System.out.println("Conexão estabelecida com sucesso para buscar tipo de passeio: " + (conn_buscar_tipo_passeio != null));
-            ps_buscar_tipo_passeio = conn_buscar_tipo_passeio.prepareStatement(sql_buscar_tipo_passeio);
-            ps_buscar_tipo_passeio.setString(1, id_tipo_passeio);
-            ResultSet busca_tipo_passeio = ps_buscar_tipo_passeio.executeQuery();
-            
-            if(busca_tipo_passeio.next()) {
-            	tipo_passeio = busca_tipo_passeio.getString(1);
-            }
-            
-            System.out.println("Busca De Tipo De Passeio Realizada Com Sucesso!\n");
-        }catch (Exception erro_ao_definir_usuario_logado) {
-        	  erro_ao_definir_usuario_logado.printStackTrace();
-        }
-    	return tipo_passeio;
-    }
-
-    @FXML
-    void Pesquisar(ActionEvent event) {
-    	String item_pesquisa = barra_busca.getText();
-    	Buscar_Passeios.BuscarSimplificado(this, item_pesquisa);
     }
 
     @FXML
