@@ -8,6 +8,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,10 +105,9 @@ public class TelaController {
     @FXML
     private Button botao_adicionar_tipoPasseios;
     
-    public static boolean fazer_busca;
+    public static boolean fazer_busca = true;
     
     public static boolean Get_Busca_Inicial() {
-    	fazer_busca = true;
     	return fazer_busca;
     }
     
@@ -134,12 +135,28 @@ public class TelaController {
     public TableView<PasseioSimplificado> Get_TabelaPrincipal() {
     	return tabela_passeios_futuros;
     }
+    
+    private void Abrir_Menu_Reserva(int id_passeio) {
+    	MenuPasseioController menuPasseioController = new MenuPasseioController();
+        menuPasseioController.abrirTela(id_passeio);
+    }
    
     @FXML
     public void initialize() {
     	PauseTransition Timer_Para_Pesquisa = new PauseTransition(Duration.millis(750));
         System.out.println("Tela carregada!");
         verificar_adm(null);   
+        
+        tabela_passeios_futuros.setOnMousePressed((MouseEvent event) -> {
+            if (event.getClickCount() == 2) {
+                PasseioSimplificado passeio_selecionado = tabela_passeios_futuros.getSelectionModel().getSelectedItem();
+                
+                if (passeio_selecionado != null) {
+                	int id_passeio = passeio_selecionado.getIdPasseioSimplificado();
+                	Abrir_Menu_Reserva(id_passeio);
+                }
+            }
+        });
         
         barra_busca.setOnKeyReleased(event -> {
             String item_pesquisa = barra_busca.getText();

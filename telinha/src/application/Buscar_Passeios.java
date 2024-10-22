@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.stream.Collectors;
@@ -191,7 +192,7 @@ public class Buscar_Passeios {
 		    	conn_busca = Conectar_Banco_Dados.getConnection();
 		        System.out.println("\nConexão estabelecida com sucesso para Pesquisa Das Reservas Futuras: " + (conn_busca != null));
 		        ps_busca = conn_busca.prepareStatement(sql_busca);
-		        ps_busca.setString(1, item_pesquisa);
+		        ps_busca.setString(1, item_pesquisa+"%");
 		        ps_busca.setString(2, item_pesquisa+"%");
 		        ps_busca.setString(3, item_pesquisa);
 		        ps_busca.setString(4, item_pesquisa);
@@ -242,8 +243,7 @@ public class Buscar_Passeios {
 	}
 	
 	
-	public static void Buscar(TelaController telacontroller, String item_busca) {
-		String item_pesquisa = item_busca;
+	public static void Buscar(int id_passeio) {
 		TableView<Passeio> tabela_resultado = new TableView<>();
 		
 		TableColumn<Passeio, Integer> idColumn = new TableColumn<>("ID Passeio");
@@ -330,6 +330,4 @@ public class Buscar_Passeios {
 	    }
 		
 	}
-	
-
 }
