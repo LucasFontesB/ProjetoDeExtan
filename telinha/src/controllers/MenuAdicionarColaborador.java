@@ -109,11 +109,7 @@ public class MenuAdicionarColaborador {
                     }
                 }catch (Exception erro_ao_definir_usuario_logado) {
               	  erro_ao_definir_usuario_logado.printStackTrace();
-                }
-    			
-    			
-                
-                
+                }  
     		}else {
     			telefone_colaborador_label.setStyle("-fx-border-color: red");
     			System.out.print("Não aceito");

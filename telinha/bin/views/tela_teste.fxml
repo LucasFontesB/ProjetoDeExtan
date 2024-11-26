@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -33,52 +35,47 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Pane layoutX="50.0" layoutY="4.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="584.0">
+                  <Pane layoutX="56.0" layoutY="58.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="431.0" prefWidth="649.0">
                      <children>
-                        <Label layoutX="50.0" layoutY="28.0" text="Nome Do Hóspede">
+                        <Label layoutX="95.0" layoutY="28.0" text="Nome Do Hóspede">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="nome_hospede_label" layoutX="35.0" layoutY="55.0" />
-                        <Label layoutX="53.0" layoutY="107.0" text="Data De Passeio">
+                        <TextField fx:id="nome_hospede_label" layoutX="35.0" layoutY="55.0" prefHeight="25.0" prefWidth="248.0" />
+                        <Label layoutX="105.0" layoutY="97.0" text="Data De Passeio">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <DatePicker fx:id="data_passeio_label" layoutX="35.0" layoutY="128.0" prefHeight="25.0" prefWidth="149.0">
+                        <DatePicker fx:id="data_passeio_label" layoutX="34.0" layoutY="118.0" prefHeight="25.0" prefWidth="248.0">
                            <tooltip>
                               <Tooltip text="gfbnfgbnd" />
                            </tooltip>
                         </DatePicker>
-                        <Label layoutX="70.0" layoutY="173.0" text="Valor Total">
+                        <Label layoutX="110.0" layoutY="153.0" text="Valor Total">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="valor_passeio_label" layoutX="35.0" layoutY="191.0" />
-                        <Label layoutX="57.0" layoutY="232.0" text="Tipo De Passeio">
+                        <TextField fx:id="valor_passeio_label" layoutX="36.0" layoutY="174.0" prefHeight="25.0" prefWidth="247.0" />
+                        <Label layoutX="94.0" layoutY="210.0" text="Tipo De Passeio">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label layoutX="319.0" layoutY="28.0" text="Valor Pago">
+                        <Label layoutX="374.0" layoutY="28.0" text="Valor Pago">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="valor_pago_label" layoutX="281.0" layoutY="55.0" />
-                        <Label layoutX="271.0" layoutY="232.0" text="Responsável pelo passeio">
+                        <TextField fx:id="valor_pago_label" layoutX="336.0" layoutY="55.0" />
+                        <Label layoutX="62.0" layoutY="271.0" text="Responsável pelo passeio">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Button fx:id="registrar_passeio_botao" layoutX="177.0" layoutY="312.0" mnemonicParsing="false" onAction="#Cadastrar_Passeio" text="Registrar Passeio">
-                           <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Button>
-                        <TextField fx:id="comprovante_label" layoutX="281.0" layoutY="128.0" onDragDropped="#Copiar_Caminho">
+                        <TextField fx:id="comprovante_label" layoutX="335.0" layoutY="118.0" onDragDropped="#Copiar_Caminho">
                            <contextMenu>
                               <ContextMenu>
                                  <items>
@@ -87,13 +84,22 @@
                               </ContextMenu>
                            </contextMenu>
                         </TextField>
-                        <Label layoutX="310.0" layoutY="107.0" text="Comprovante">
+                        <Label layoutX="365.0" layoutY="97.0" text="Comprovante">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="menu_tipo_passeio" layoutX="39.0" layoutY="256.0" prefWidth="150.0" promptText="Selecione o Tipo do Passeio" />
-                        <ComboBox fx:id="menu_responsavel" layoutX="280.0" layoutY="256.0" prefWidth="150.0" promptText="Selecione o Responsavel" />
+                        <ComboBox fx:id="menu_tipo_passeio" layoutX="71.0" layoutY="233.0" prefWidth="150.0" promptText="Selecione o Tipo do Passeio" />
+                        <ComboBox fx:id="menu_responsavel" layoutX="71.0" layoutY="292.0" prefWidth="150.0" promptText="Selecione o Responsavel" />
+                        <CheckBox layoutX="108.0" layoutY="327.0" mnemonicParsing="false" text="Agendado" />
+                        <DatePicker layoutX="335.0" layoutY="174.0" prefHeight="25.0" prefWidth="150.0" />
+                        <Label layoutX="356.0" layoutY="155.0" text="Data Do Pagamento" />
+                        <Line endX="100.0" layoutX="313.0" layoutY="186.0" rotate="90.0" scaleX="1.8" startX="-100.0" />
+                        <Button fx:id="registrar_passeio_botao" layoutX="250.0" layoutY="398.0" mnemonicParsing="false" onAction="#Cadastrar_Passeio" text="Registrar Passeio">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
                      </children>
                   </Pane>
                </children></AnchorPane>
@@ -103,30 +109,26 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <Pane layoutX="29.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="336.0" prefWidth="542.0">
-                     <children>
-                        <Button fx:id="botao_adicionar_colaborador" layoutX="161.0" layoutY="94.0" mnemonicParsing="false" onAction="#Adicionar_Colaborador" text="Adicionar Colaboradores">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="botao_adicionar_usuario" layoutX="184.0" layoutY="149.0" mnemonicParsing="false" onAction="#Abrir_Menu_Adicionar_Usuario" text="Adicionar Usuarios">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="botao_relatorio" layoutX="219.0" layoutY="262.0" mnemonicParsing="false" onAction="#Abrir_Menu_Relatorios" text="Relatórios">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="botao_adicionar_tipoPasseios" layoutX="152.0" layoutY="33.0" mnemonicParsing="false" onAction="#Adicionar_Passeio" text="Adicionar Tipo De Passeios">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
+                  <Button fx:id="botao_adicionar_colaborador" layoutX="270.0" layoutY="160.0" mnemonicParsing="false" onAction="#Adicionar_Colaborador" text="Adicionar Colaboradores">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botao_adicionar_usuario" layoutX="295.0" layoutY="215.0" mnemonicParsing="false" onAction="#Abrir_Menu_Adicionar_Usuario" text="Adicionar Usuarios">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botao_relatorio" layoutX="329.0" layoutY="270.0" mnemonicParsing="false" onAction="#Abrir_Menu_Relatorios" text="Relatórios">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="botao_adicionar_tipoPasseios" layoutX="262.0" layoutY="100.0" mnemonicParsing="false" onAction="#Adicionar_Tipo_Passeio" text="Adicionar Tipo De Passeios">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
         </content>

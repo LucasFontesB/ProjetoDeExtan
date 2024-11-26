@@ -22,7 +22,10 @@ import application.Conectar_Banco_Dados;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Pattern;
@@ -141,7 +144,8 @@ public class TelaController {
         menuPasseioController.abrirTela(id_passeio);
     }
    
-    @FXML
+    @SuppressWarnings("rawtypes")
+	@FXML
     public void initialize() {
     	PauseTransition Timer_Para_Pesquisa = new PauseTransition(Duration.millis(750));
         System.out.println("Tela carregada!");
@@ -173,6 +177,108 @@ public class TelaController {
         Platform.runLater(() -> {
             Buscar_Passeios.BuscarSimplificado(this, null);
         });
+        
+        tab_adicionarPasseios.setOnSelectionChanged(event ->{      
+			Set<String> tipos_passeios = new HashSet();
+        	ObservableList passeiosList = FXCollections.observableArrayList();
+        	menu_tipo_passeio.getItems().clear();
+        	if(menu_tipo_passeio == null) {
+        		System.out.print("\nComboBox Vazia\n");
+        	}else {
+        		menu_tipo_passeio.getItems().clear();
+        		System.out.print("\nComboBox NÃO Vazia\n");
+        	}
+        	System.out.println("\n\nBuscando por tipo de passeios registrados...\n");
+    		String sql_buscar_tipos_responsaveis_passeios = "SELECT tipos_passeios.descricao FROM tipos_passeios";
+            PreparedStatement ps_buscar_tipos_responsaveis_passeiosos = null;
+            Connection conn_buscar_tipos_responsaveis_passeiosos = null;
+            
+            try {
+            	conn_buscar_tipos_responsaveis_passeiosos = Conectar_Banco_Dados.getConnection();
+                System.out.println("Conexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_buscar_tipos_responsaveis_passeiosos != null));
+                ps_buscar_tipos_responsaveis_passeiosos = conn_buscar_tipos_responsaveis_passeiosos.prepareStatement(sql_buscar_tipos_responsaveis_passeios);
+                ResultSet tipos_passeios_achados = ps_buscar_tipos_responsaveis_passeiosos.executeQuery();
+                
+                while(tipos_passeios_achados.next()) {
+                	String tipos_achados = tipos_passeios_achados.getString("descricao");
+                	System.out.print("\nTipos Achados: "+tipos_achados+"\n");
+                    tipos_passeios.add(tipos_achados);
+                }
+                passeiosList.addAll(tipos_passeios);
+                menu_tipo_passeio.setItems(passeiosList);
+                
+                System.out.println("Horário Resgistrado Com Sucesso\n");
+            }catch (Exception erro_ao_definir_usuario_logado) {
+          	  erro_ao_definir_usuario_logado.printStackTrace();
+            }finally {
+            	try {
+					if (ps_buscar_tipos_responsaveis_passeiosos != null) {
+                    	ps_buscar_tipos_responsaveis_passeiosos.close();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar PreparedStatement");
+                    }
+        
+                    if (conn_buscar_tipos_responsaveis_passeiosos != null) {
+                       Conectar_Banco_Dados.closeConnection();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar Conexão Com Banco De Dados");
+                    }
+                 } catch (Exception var12) {
+                    var12.printStackTrace();
+                 }
+            }
+            
+            
+            Set<String> responsaveis_passeios_list = new HashSet();
+        	ArrayList responsaveis_passeios = new ArrayList();
+        	ObservableList responsaveisList = FXCollections.observableArrayList();
+        	menu_responsavel.getItems().clear();
+        	if(menu_responsavel == null) {
+        		System.out.print("\nComboBox Vazia\n");
+        	}else {
+        		menu_responsavel.getItems().clear();
+        		System.out.print("\nComboBox NÃO Vazia\n");
+        	}
+        	System.out.println("\n\nBuscando por tipo de passeios registrados...\n");
+    		String sql_buscar_responsaveis_passeios = "SELECT colaboradores.nome FROM colaboradores";
+            PreparedStatement ps_buscar_responsaveis_passeiosos = null;
+            Connection conn_buscar_responsaveis_passeiosos = null;
+            
+            try {
+            	conn_buscar_tipos_responsaveis_passeiosos = Conectar_Banco_Dados.getConnection();
+                System.out.println("Conexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_buscar_responsaveis_passeiosos != null));
+                ps_buscar_responsaveis_passeiosos = conn_buscar_tipos_responsaveis_passeiosos.prepareStatement(sql_buscar_responsaveis_passeios);
+                ResultSet responsaveis_achados = ps_buscar_responsaveis_passeiosos.executeQuery();
+                
+                while(responsaveis_achados.next()) {
+                	String string_responsaveis_achados = responsaveis_achados.getString("nome");
+                	System.out.print("\nTipos Achados: "+string_responsaveis_achados+"\n");
+                    responsaveis_passeios.add(string_responsaveis_achados);
+                }
+                responsaveisList.addAll(responsaveis_passeios);
+                menu_responsavel.setItems(responsaveisList);
+                
+                System.out.println("Horário Resgistrado Com Sucesso\n");
+            }catch (Exception erro_ao_definir_usuario_logado) {
+          	  erro_ao_definir_usuario_logado.printStackTrace();
+            }finally {
+            	try {
+					if (ps_buscar_responsaveis_passeiosos != null) {
+						ps_buscar_responsaveis_passeiosos.close();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar PreparedStatement");
+                    }
+        
+                    if (conn_buscar_tipos_responsaveis_passeiosos != null) {
+                       Conectar_Banco_Dados.closeConnection();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar Conexão Com Banco De Dados");
+                    }
+                 } catch (Exception var12) {
+                    var12.printStackTrace();
+                 }
+            }
+ 	    });
     }
 
     @FXML
@@ -327,7 +433,7 @@ public class TelaController {
     }
     
     @FXML
-    void Adicionar_Passeio(ActionEvent event) {
+    void Adicionar_Tipo_Passeio(ActionEvent event) {
 
     }
 

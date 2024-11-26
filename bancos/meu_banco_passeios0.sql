@@ -27,18 +27,19 @@ CREATE TABLE `passeios` (
   `nome_do_hospede` varchar(255) NOT NULL,
   `data_do_passeio` datetime NOT NULL,
   `valor` decimal(10,2) NOT NULL,
-  `id_tipo_passeio` int(11) NOT NULL,
+  `tipo_passeio` int(11) NOT NULL,
   `data_de_registro_passeio` datetime NOT NULL,
   `id_responsavel_registro_passeio` int(11) NOT NULL,
   `id_colaborador_passeio` int(11) NOT NULL,
+  `status_passeio` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_passeio`),
-  KEY `id_tipo_passeio` (`id_tipo_passeio`),
+  KEY `id_tipo_passeio` (`tipo_passeio`),
   KEY `id_responsavel_registro_passeio` (`id_responsavel_registro_passeio`),
   KEY `id_colaborador_passeio` (`id_colaborador_passeio`),
-  CONSTRAINT `passeios_ibfk_1` FOREIGN KEY (`id_tipo_passeio`) REFERENCES `tipos_passeios` (`id_tipo_passeio`),
+  CONSTRAINT `passeios_ibfk_1` FOREIGN KEY (`tipo_passeio`) REFERENCES `tipos_passeios` (`id_tipo_passeio`),
   CONSTRAINT `passeios_ibfk_2` FOREIGN KEY (`id_responsavel_registro_passeio`) REFERENCES `usuarios` (`id_usuario`),
   CONSTRAINT `passeios_ibfk_3` FOREIGN KEY (`id_colaborador_passeio`) REFERENCES `colaboradores` (`id_colaborador`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +48,7 @@ CREATE TABLE `passeios` (
 
 LOCK TABLES `passeios` WRITE;
 /*!40000 ALTER TABLE `passeios` DISABLE KEYS */;
-INSERT INTO `passeios` VALUES (3,'Lucas','2024-10-20 00:00:00',172.50,1,'2024-10-11 10:27:00',1,1);
+INSERT INTO `passeios` VALUES (3,'Lucas','2024-10-20 00:00:00',172.50,1,'2024-10-11 10:27:00',1,1,NULL),(4,'Lucas','2024-10-10 00:00:00',105.50,1,'2024-10-13 17:50:10',1,1,1),(5,'George','2024-10-13 00:00:00',10.30,1,'2024-10-12 17:50:10',1,1,1),(6,'Gaile','2024-10-17 00:00:00',856.30,1,'2024-10-09 17:50:10',1,1,1);
 /*!40000 ALTER TABLE `passeios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-11 12:24:39
+-- Dump completed on 2024-10-15 16:12:23

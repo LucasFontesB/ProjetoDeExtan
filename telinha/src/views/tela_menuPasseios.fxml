@@ -4,10 +4,27 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuPasseioController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Nome Do Hóspede" />
       <Label fx:id="nome_hospede_label" layoutX="14.0" layoutY="31.0" text="Label" />
+      <Label layoutX="14.0" layoutY="57.0" text="ID Do Passeio" />
+      <Label fx:id="id_passeio_label" layoutX="14.0" layoutY="74.0" text="Label" />
+      <Label layoutX="14.0" layoutY="100.0" text="Data Do Passeio" />
+      <Label fx:id="data_passeio_label" layoutX="14.0" layoutY="117.0" text="Label" />
+      <Label layoutX="14.0" layoutY="287.0" text="Valor Do Passeio" />
+      <Label fx:id="valor_passeio_label" layoutX="14.0" layoutY="304.0" text="Label" />
+      <Label layoutX="173.0" layoutY="14.0" text="Tipo Do Passeio" />
+      <Label fx:id="tipo_passeio_label" layoutX="173.0" layoutY="31.0" text="Label" />
+      <Label layoutX="435.0" layoutY="14.0" text="Data De Registro Do Passeio" />
+      <Label fx:id="data_registro_passeio_label" layoutX="435.0" layoutY="31.0" text="Label" />
+      <Label layoutX="435.0" layoutY="57.0" text="Usuario Do Registro" />
+      <Label fx:id="usuario_registro_label" layoutX="435.0" layoutY="74.0" text="Label" />
+      <Label layoutX="173.0" layoutY="57.0" text="Nome Do Colaborador" />
+      <Label fx:id="nome_colaborador_label" layoutX="173.0" layoutY="74.0" text="Label" />
+      <Label layoutX="173.0" layoutY="100.0" text="Status Do Passeio" />
+      <Label fx:id="status_passeio_label" layoutX="173.0" layoutY="117.0" text="Label" />
+      <Label layoutX="159.0" layoutY="287.0" text="ID Pagamento" />
+      <Label fx:id="id_pagamento_label" layoutX="159.0" layoutY="304.0" text="Label" />
    </children>
 </Pane>
