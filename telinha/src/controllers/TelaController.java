@@ -405,6 +405,7 @@ public class TelaController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_adicionarColaborador.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Adicionar Usuarios");
             stage.setScene(new Scene(root));
             stage.show();
@@ -419,6 +420,7 @@ public class TelaController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_adicionarUsuario.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
+            stage.setResizable(false);
             stage.setTitle("Adicionar Usuarios");
             stage.setScene(new Scene(root));
             stage.show();

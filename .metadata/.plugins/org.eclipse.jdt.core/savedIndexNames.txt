@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.134+C:\Users\Madara\OneDrive\Área de Trabalho\JAVAFX\.metadata\.plugins\org.eclipse.jdt.core
 2469258261.index
 1604213432.index
@@ -12,6 +13,35 @@ INDEX VERSION 1.134+C:\Users\Madara\OneDrive\Área de Trabalho\JAVAFX\.metadata\
 3048497776.index
 1213400663.index
 502670028.index
+=======
+INDEX VERSION 1.134+C:\Users\dougl\OneDrive\Área de Trabalho\ProjetoExtenOff\.metadata\.plugins\org.eclipse.jdt.core
+1491850328.index
+2225578857.index
+3349263111.index
+1977829654.index
+1696731249.index
+1609435243.index
+3941837702.index
+2224089641.index
+2490230956.index
+3226603466.index
+4017950000.index
+3077423786.index
+3199414224.index
+1738228198.index
+848225093.index
+3803894794.index
+3472233847.index
+1767638183.index
+2035429517.index
+2809749371.index
+3818312592.index
+198000110.index
+2188566825.index
+3900778431.index
+3713868903.index
+2155608058.index
+>>>>>>> origin/versao_02
 1865797976.index
 2489076533.index
 3803894794.index

@@ -7,7 +7,11 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Users/Madara/OneDrive/Área de Trabalho/JAVAFX/telinha/lib/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar">
+=======
+	<classpathentry kind="lib" path="C:/Users/dougl/OneDrive/Área de Trabalho/ProjetoExtenOff/telinha/lib/mysql-connector-j-9.0.0/mysql-connector-j-9.0.0.jar">
+>>>>>>> origin/versao_02
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>

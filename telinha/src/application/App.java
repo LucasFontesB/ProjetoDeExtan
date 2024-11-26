@@ -121,6 +121,7 @@ public class App extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception { 	
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_login.fxml"));
+        primaryStage.setResizable(false);
         Parent root = fxmlLoader.load();
         Scene tela = new Scene(root);
         

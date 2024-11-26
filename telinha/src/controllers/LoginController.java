@@ -223,8 +223,9 @@ public class LoginController {
 		                      
 		                      try {
 		                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_teste.fxml"));
-		                          Parent root = fxmlLoader.load();
+		                          Parent root = fxmlLoader.load();		                     
 		                          Stage stage = new Stage();
+		                          stage.setResizable(false);
 		                          stage.setTitle("Passeios");
 		                          stage.setScene(new Scene(root));
 		                          stage.setOnCloseRequest(e -> {
