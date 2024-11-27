@@ -240,7 +240,8 @@ public class TelaController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_login.fxml"));
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
-            stage.setTitle("Gerenciador De Passeios");
+            stage.setResizable(false);
+            stage.setTitle("Tour Manager - Gerenciador De Passeios");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception erro_ao_abrir_tela_principal) {
@@ -334,3 +335,5 @@ public class TelaController {
     }
 
 }
+
+

@@ -125,7 +125,7 @@ public class App extends Application{
         Parent root = fxmlLoader.load();
         Scene tela = new Scene(root);
         
-        primaryStage.setTitle("Gerenciador De Passeios");
+        primaryStage.setTitle("Tour Manager - Gerenciador De Passeios");
         primaryStage.setScene(tela);
         primaryStage.show();
     }

@@ -25,7 +25,7 @@ public class MenuPasseioController {
             MenuPasseioController controller = fxmlLoader.getController();
             controller.Mostrar_Passeio(id);
             Stage stage = new Stage();
-            stage.setTitle("Gerenciador De Passeios");
+            stage.setTitle("Tour Manager - Gerenciador De Passeios");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception erro_ao_abrir_tela_principal) {
