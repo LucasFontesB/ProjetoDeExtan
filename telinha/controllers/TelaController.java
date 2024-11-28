@@ -4,10 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.Connection;
@@ -15,14 +18,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import application.Buscar_Passeios;
-import application.Buscar_Passeios.Passeio;
+
 import application.Buscar_Passeios.PasseioSimplificado;
 import application.Conectar_Banco_Dados;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Pattern;
@@ -52,10 +60,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
+import application.App;
+
 public class TelaController {
 
     @FXML
     private Tab tab_adicionarPasseios;
+    
+    @FXML
+    private TextField hora_passeio;
 
     @FXML
     private Tab tab_home;
@@ -98,6 +111,9 @@ public class TelaController {
 
     @FXML
     private Button botao_relatorio;
+    
+    @FXML
+    private CheckBox esta_agendado;
 
     @FXML
     private TextField comprovante_label;
@@ -141,11 +157,12 @@ public class TelaController {
         menuPasseioController.abrirTela(id_passeio);
     }
    
-    @FXML
+    @SuppressWarnings("rawtypes")
+	@FXML
     public void initialize() {
     	PauseTransition Timer_Para_Pesquisa = new PauseTransition(Duration.millis(750));
         System.out.println("Tela carregada!");
-        verificar_adm(null);   
+        verificar_adm(null);  
         
         tabela_passeios_futuros.setOnMousePressed((MouseEvent event) -> {
             if (event.getClickCount() == 2) {
@@ -173,6 +190,108 @@ public class TelaController {
         Platform.runLater(() -> {
             Buscar_Passeios.BuscarSimplificado(this, null);
         });
+        
+        tab_adicionarPasseios.setOnSelectionChanged(event ->{      
+			Set<String> tipos_passeios = new HashSet();
+        	ObservableList passeiosList = FXCollections.observableArrayList();
+        	menu_tipo_passeio.getItems().clear();
+        	if(menu_tipo_passeio == null) {
+        		System.out.print("\nComboBox Vazia\n");
+        	}else {
+        		menu_tipo_passeio.getItems().clear();
+        		System.out.print("\nComboBox NÃO Vazia\n");
+        	}
+        	System.out.println("\n\nBuscando por tipo de passeios registrados...\n");
+    		String sql_buscar_tipos_responsaveis_passeios = "SELECT tipos_passeios.descricao FROM tipos_passeios";
+            PreparedStatement ps_buscar_tipos_responsaveis_passeiosos = null;
+            Connection conn_buscar_tipos_responsaveis_passeiosos = null;
+            
+            try {
+            	conn_buscar_tipos_responsaveis_passeiosos = Conectar_Banco_Dados.getConnection();
+                System.out.println("Conexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_buscar_tipos_responsaveis_passeiosos != null));
+                ps_buscar_tipos_responsaveis_passeiosos = conn_buscar_tipos_responsaveis_passeiosos.prepareStatement(sql_buscar_tipos_responsaveis_passeios);
+                ResultSet tipos_passeios_achados = ps_buscar_tipos_responsaveis_passeiosos.executeQuery();
+                
+                while(tipos_passeios_achados.next()) {
+                	String tipos_achados = tipos_passeios_achados.getString("descricao");
+                	System.out.print("\nTipos Achados: "+tipos_achados+"\n");
+                    tipos_passeios.add(tipos_achados);
+                }
+                passeiosList.addAll(tipos_passeios);
+                menu_tipo_passeio.setItems(passeiosList);
+                
+                System.out.println("Horário Resgistrado Com Sucesso\n");
+            }catch (Exception erro_ao_definir_usuario_logado) {
+          	  erro_ao_definir_usuario_logado.printStackTrace();
+            }finally {
+            	try {
+					if (ps_buscar_tipos_responsaveis_passeiosos != null) {
+                    	ps_buscar_tipos_responsaveis_passeiosos.close();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar PreparedStatement");
+                    }
+        
+                    if (conn_buscar_tipos_responsaveis_passeiosos != null) {
+                       Conectar_Banco_Dados.closeConnection();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar Conexão Com Banco De Dados");
+                    }
+                 } catch (Exception var12) {
+                    var12.printStackTrace();
+                 }
+            }
+            
+            
+            Set<String> responsaveis_passeios_list = new HashSet();
+        	ArrayList responsaveis_passeios = new ArrayList();
+        	ObservableList responsaveisList = FXCollections.observableArrayList();
+        	menu_responsavel.getItems().clear();
+        	if(menu_responsavel == null) {
+        		System.out.print("\nComboBox Vazia\n");
+        	}else {
+        		menu_responsavel.getItems().clear();
+        		System.out.print("\nComboBox NÃO Vazia\n");
+        	}
+        	System.out.println("\n\nBuscando por tipo de passeios registrados...\n");
+    		String sql_buscar_responsaveis_passeios = "SELECT colaboradores.nome FROM colaboradores";
+            PreparedStatement ps_buscar_responsaveis_passeiosos = null;
+            Connection conn_buscar_responsaveis_passeiosos = null;
+            
+            try {
+            	conn_buscar_tipos_responsaveis_passeiosos = Conectar_Banco_Dados.getConnection();
+                System.out.println("Conexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_buscar_responsaveis_passeiosos != null));
+                ps_buscar_responsaveis_passeiosos = conn_buscar_tipos_responsaveis_passeiosos.prepareStatement(sql_buscar_responsaveis_passeios);
+                ResultSet responsaveis_achados = ps_buscar_responsaveis_passeiosos.executeQuery();
+                
+                while(responsaveis_achados.next()) {
+                	String string_responsaveis_achados = responsaveis_achados.getString("nome");
+                	System.out.print("\nTipos Achados: "+string_responsaveis_achados+"\n");
+                    responsaveis_passeios.add(string_responsaveis_achados);
+                }
+                responsaveisList.addAll(responsaveis_passeios);
+                menu_responsavel.setItems(responsaveisList);
+                
+                System.out.println("Horário Resgistrado Com Sucesso\n");
+            }catch (Exception erro_ao_definir_usuario_logado) {
+          	  erro_ao_definir_usuario_logado.printStackTrace();
+            }finally {
+            	try {
+					if (ps_buscar_responsaveis_passeiosos != null) {
+						ps_buscar_responsaveis_passeiosos.close();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar PreparedStatement");
+                    }
+        
+                    if (conn_buscar_tipos_responsaveis_passeiosos != null) {
+                       Conectar_Banco_Dados.closeConnection();
+                    }else {
+                   	 System.out.print("Erro Ao Tentar Fechar Conexão Com Banco De Dados");
+                    }
+                 } catch (Exception var12) {
+                    var12.printStackTrace();
+                 }
+            }
+ 	    });
     }
 
     @FXML
@@ -241,17 +360,148 @@ public class TelaController {
             Parent root = fxmlLoader.load();
             Stage stage = new Stage();
             stage.setResizable(false);
-            stage.setTitle("Tour Manager - Gerenciador De Passeios");
+            stage.setTitle("Gerenciador De Passeios");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception erro_ao_abrir_tela_principal) {
         	erro_ao_abrir_tela_principal.printStackTrace();
         }
     }
-
+    
+    private void Mostrar_Alerta(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+    
     @FXML
     void Cadastrar_Passeio(ActionEvent event) {
+    	float valor_total = 0;
+    	float valor_pago = 0;
+    	String valor_pago_formatado = null;
+    	String valor_pagamento_string = null;
+    	String tipo_passeio_string = null;
+    	LocalDateTime data_hora_passeio = null;
+    	String nome_hospede_passeio = null;
+    	String hora_passeio_string = null;
+    	String valor_total_string = null;
+    	String valor_total_formatado = null;
+    	String responsavel_string = null;
+    	int esta_agendado_formatado = 0;
     	
+    	try {
+    	    nome_hospede_passeio = nome_hospede_label.getText();
+    	    if (nome_hospede_passeio == null || nome_hospede_passeio.trim().isEmpty()) {
+    	        Mostrar_Alerta("Erro De Preenchimento", "O campo 'Nome do Hóspede' deve ser preenchido!");
+    	        nome_hospede_label.setStyle("-fx-border-color: red");
+    	        return;
+    	    } else {
+    	        nome_hospede_label.setStyle("");
+    	    }
+
+    	    try {
+    	        valor_total_string = valor_passeio_label.getText();
+    	        if (valor_total_string == null || valor_total_string.trim().isEmpty()) {
+    	            Mostrar_Alerta("Erro De Preenchimento", "O campo 'Valor Total' deve ser preenchido!");
+    	            valor_passeio_label.setStyle("-fx-border-color: red");
+    	            return;
+    	        }
+
+    	        valor_passeio_label.setStyle("");
+
+    	        valor_total_formatado = valor_total_string.replace("R$", "").trim();
+    	        valor_total = Float.parseFloat(valor_total_formatado);
+    	        
+    	        valor_passeio_label.setText(String.format("R$ "+valor_total+"0"));
+    	        
+    	    } catch (NumberFormatException e) {
+    	        Mostrar_Alerta("Erro De Preenchimento", "No campo 'Valor Total', deve ser escrito apenas números!");
+    	        valor_passeio_label.setStyle("-fx-border-color: red");
+    	        return;
+    	    }
+
+    	    Object tipo_passeio_obj = menu_tipo_passeio.getValue();
+    	    if (tipo_passeio_obj == null) {
+    	        Mostrar_Alerta("Erro De Preenchimento", "Selecione um tipo de passeio!");
+    	        menu_tipo_passeio.setStyle("-fx-border-color: red");
+    	        return;
+    	    } else {
+    	        menu_tipo_passeio.setStyle("");
+    	        tipo_passeio_string = tipo_passeio_obj.toString();
+    	    }
+
+    	    try {
+    	    	hora_passeio.setStyle("");
+    	        hora_passeio_string = hora_passeio.getText();
+    	        if (hora_passeio_string == null || !hora_passeio_string.matches("\\d{2}:\\d{2}")) {
+    	            throw new DateTimeParseException("Formato inválido", hora_passeio_string, 0);
+    	        }
+
+    	        if (hora_passeio_string.matches("\\d{2}:\\d{2}")) {
+    	            hora_passeio_string += ":00";
+    	        }
+
+    	        LocalTime hora_passeio_formatada = LocalTime.parse(hora_passeio_string, DateTimeFormatter.ofPattern("HH:mm:ss"));
+
+    	        LocalDate data_passeio = data_passeio_label.getValue();
+    	        if (data_passeio == null) {
+    	            Mostrar_Alerta("Erro De Preenchimento", "Por favor, selecione uma data!");
+    	            data_passeio_label.setStyle("-fx-border-color: red");
+    	            return;
+    	        } else {
+    	            data_hora_passeio = LocalDateTime.of(data_passeio, hora_passeio_formatada);
+    	            data_passeio_label.setStyle("");
+    	        }
+    	    } catch (DateTimeParseException e) {
+    	        Mostrar_Alerta("Erro De Preenchimento", "A hora deve estar no formato HH:mm ou HH:mm:ss.");
+    	        hora_passeio.setStyle("-fx-border-color: red");
+    	        return;
+    	    } catch (Exception e) {
+    	        Mostrar_Alerta("Erro Inesperado", "Ocorreu um erro ao processar os dados: " + e.getMessage());
+    	        return;
+    	    }
+    	    
+    	    Object responsavel_passeio_obj = menu_responsavel.getValue();
+    	    if (responsavel_passeio_obj == null) {
+    	        Mostrar_Alerta("Erro De Preenchimento", "Selecione um responsavel para o passeio!");
+    	        menu_responsavel.setStyle("-fx-border-color: red");
+    	        return;
+    	    } else {
+    	        menu_responsavel.setStyle("");
+    	        responsavel_string = tipo_passeio_obj.toString();
+    	    }
+    	    
+    	    if(esta_agendado.isSelected()) {
+    	    	esta_agendado_formatado = 1;
+    	    }else {
+    	    	esta_agendado_formatado = 0;
+    	    }
+    	    
+    	    try {
+    	        valor_pagamento_string = valor_pago_label.getText();
+    	        if (valor_pagamento_string == null || valor_pagamento_string.trim().isEmpty()) {
+    	        	valor_pago_label.setText(String.format("R$ 0.00"));
+    	        }
+    	        valor_pago_label.setStyle("");
+
+    	        valor_pago_formatado = valor_pagamento_string.replace("R$", "").trim();
+    	        valor_pago = Float.parseFloat(valor_pago_formatado);
+    	        
+    	        valor_pago_label.setText(String.format("R$ "+valor_pago+"0"));
+    	        
+    	    } catch (NumberFormatException e) {
+    	        Mostrar_Alerta("Erro De Preenchimento", "No campo 'Valor Pago', deve ser escrito apenas números!");
+    	        valor_pago_label.setStyle("-fx-border-color: red");
+    	        return;
+    	    }
+    	    
+
+    	} catch (Exception e) {
+    	    Mostrar_Alerta("Erro Inesperado", "Um erro ocorreu: " + e.getMessage());
+    	}
+    
     }
 
     @FXML
@@ -330,10 +580,8 @@ public class TelaController {
     }
     
     @FXML
-    void Adicionar_Passeio(ActionEvent event) {
+    void Adicionar_Tipo_Passeio(ActionEvent event) {
 
     }
 
 }
-
-

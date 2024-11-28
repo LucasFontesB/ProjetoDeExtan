@@ -17,6 +17,34 @@ public class MenuPasseioController {
 	
     @FXML
     private Label nome_hospede_label;
+    
+    @FXML
+    private Label data_passeio_label;
+
+    @FXML
+    private Label data_registro_passeio_label;
+
+    @FXML
+    private Label usuario_registro_label;
+
+    @FXML
+    private Label id_passeio_label;
+
+    @FXML
+    private Label status_passeio_label;
+
+    @FXML
+    private Label valor_passeio_label;
+
+    @FXML
+    private Label nome_colaborador_label;
+
+    @FXML
+    private Label tipo_passeio_label;
+
+    @FXML
+    private Label id_pagamento_label;
+
 	
     public void abrirTela(int id) {
         try {
@@ -25,7 +53,7 @@ public class MenuPasseioController {
             MenuPasseioController controller = fxmlLoader.getController();
             controller.Mostrar_Passeio(id);
             Stage stage = new Stage();
-            stage.setTitle("Tour Manager - Gerenciador De Passeios");
+            stage.setTitle("Gerenciador De Passeios");
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception erro_ao_abrir_tela_principal) {
@@ -35,7 +63,7 @@ public class MenuPasseioController {
     
     public void Mostrar_Passeio(int id) {
     	System.out.println("Procurando Passeio Para Menu...\n");
-		String sql_buscar_passeio_completo = "SELECT passeios.id_passeio, passeios.nome_do_hospede, passeios.data_do_passeio, passeios.valor, tipos_passeios.descricao, passeios.data_de_registro_passeio, usuarios.nome as 'nome_usuario_registro', colaboradores.nome as 'nome_colaborador', passeios.status_passeio, passeios.id_pagamento, transacoes.comissao, transacoes.comprovante, transacoes.data_pagamento FROM passeiosJOIN transacoes ON passeios.id_pagamento = transacoes.id_transacao JOIN tipos_passeios ON tipos_passeios.id_tipo_passeio = passeios.tipo_passeio JOIN usuarios ON passeios.id_responsavel_registro_passeio = usuarios.id_usuario JOIN colaboradores ON passeios.id_colaborador_passeio = colaboradores.id_colaborador WHERE passeios.id_passeio = ?";
+		String sql_buscar_passeio_completo = "SELECT passeios.id_passeio, passeios.nome_do_hospede, passeios.data_do_passeio, passeios.valor, tipos_passeios.descricao, passeios.data_de_registro_passeio, usuarios.nome as 'nome_usuario_registro', colaboradores.nome as 'nome_colaborador', passeios.status_passeio, passeios.id_pagamento, transacoes.comissao, transacoes.comprovante, transacoes.data_pagamento FROM passeios JOIN transacoes ON passeios.id_pagamento = transacoes.id_transacao JOIN tipos_passeios ON tipos_passeios.id_tipo_passeio = passeios.tipo_passeio JOIN usuarios ON passeios.id_responsavel_registro_passeio = usuarios.id_usuario JOIN colaboradores ON passeios.id_colaborador_passeio = colaboradores.id_colaborador WHERE passeios.id_passeio = ?";
         PreparedStatement ps_buscar_passeio_completo = null;
         Connection conn_buscar_passeio_completo = null;
         
@@ -69,8 +97,20 @@ public class MenuPasseioController {
 	            }else {
 	            	status_convertido = "Não Agendado";
 	            }
+	            
+	            nome_hospede_label.setText(nomeHospede);
+	            data_passeio_label.setText(dataPasseio_formatada);
+	            data_registro_passeio_label.setText(dataRegistro_formatada);
+	            usuario_registro_label.setText(responsavel);
+	            id_passeio_label.setText(""+idPasseio);
+	            status_passeio_label.setText(status_convertido);
+	            valor_passeio_label.setText(""+valor);
+	            nome_colaborador_label.setText(nome_colaborador);
+	            tipo_passeio_label.setText(tipoPasseio);
+	            id_pagamento_label.setText(""+id_pagamento);
+	            
             }
-            
+
             System.out.println("Horário Resgistrado Com Sucesso\n");
         }catch (Exception erro_ao_definir_usuario_logado) {
       	  erro_ao_definir_usuario_logado.printStackTrace();

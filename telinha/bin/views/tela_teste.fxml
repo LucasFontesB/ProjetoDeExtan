@@ -120,7 +120,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="botao_adicionar_tipoPasseios" layoutX="315.0" layoutY="141.0" mnemonicParsing="false" onAction="#Adicionar_Passeio" prefHeight="39.0" prefWidth="290.0" style="-fx-cursor: hand;" styleClass="botaoATP" text="Adicionar Tipo De Passeios">
+                        <Button fx:id="botao_adicionar_tipoPasseios" layoutX="315.0" layoutY="141.0" mnemonicParsing="false" onAction="#Cadastrar_Passeio" prefHeight="39.0" prefWidth="290.0" style="-fx-cursor: hand;" styleClass="botaoATP" text="Adicionar Tipo De Passeios">
                            <font>
                               <Font size="18.0" />
                            </font>
