@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuAdicionarColaborador">
+   <children>
+      <Button fx:id="botao_registrar_colaborador" layoutX="139.0" layoutY="203.0" mnemonicParsing="false" onAction="#Registrar_Colaborador" text="Registrar">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="nome_colaborador_label" layoutX="117.0" layoutY="53.0" />
+      <TextField fx:id="telefone_colaborador_label" layoutX="117.0" layoutY="139.0" />
+      <Label layoutX="91.0" layoutY="23.0" text="Nome Do Colaborador">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="94.0" layoutY="109.0" text="Telefone Para Contato">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

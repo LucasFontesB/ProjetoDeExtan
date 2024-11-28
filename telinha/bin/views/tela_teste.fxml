@@ -42,7 +42,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="nome_hospede_label" layoutX="35.0" layoutY="55.0" prefHeight="25.0" prefWidth="248.0" />
+                        <TextField fx:id="nome_hospede_label" layoutX="35.0" layoutY="55.0" prefHeight="25.0" prefWidth="248.0" text="da" />
                         <Label layoutX="105.0" layoutY="97.0" text="Data De Passeio">
                            <font>
                               <Font size="15.0" />
@@ -93,13 +93,22 @@
                         <ComboBox fx:id="menu_responsavel" layoutX="71.0" layoutY="292.0" prefWidth="150.0" promptText="Selecione o Responsavel" />
                         <CheckBox layoutX="108.0" layoutY="327.0" mnemonicParsing="false" text="Agendado" />
                         <DatePicker layoutX="335.0" layoutY="174.0" prefHeight="25.0" prefWidth="150.0" />
-                        <Label layoutX="356.0" layoutY="155.0" text="Data Do Pagamento" />
+                        <Label layoutX="343.0" layoutY="153.0" text="Data Do Pagamento">
+                           <font>
+                              <Font size="15.0" />
+                           </font></Label>
                         <Line endX="100.0" layoutX="313.0" layoutY="186.0" rotate="90.0" scaleX="1.8" startX="-100.0" />
                         <Button fx:id="registrar_passeio_botao" layoutX="250.0" layoutY="398.0" mnemonicParsing="false" onAction="#Cadastrar_Passeio" text="Registrar Passeio">
                            <font>
                               <Font size="17.0" />
                            </font>
                         </Button>
+                        <Label layoutX="346.0" layoutY="205.0" text="Hora Do Passeio">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="hora_passeio" layoutX="335.0" layoutY="233.0" />
                      </children>
                   </Pane>
                </children></AnchorPane>

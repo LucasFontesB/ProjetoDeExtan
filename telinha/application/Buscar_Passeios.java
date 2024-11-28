@@ -1,0 +1,185 @@
+package application;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
+import application.Buscar_Passeios.PasseioSimplificado;
+import controllers.TelaController;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+public class Buscar_Passeios {
+	
+	public static class PasseioSimplificado {
+        private int idPasseio;
+        private String nomeHospede;
+        private String dataPasseio;
+        private String tipoPasseio;
+        private String status;
+
+        public PasseioSimplificado(int idPasseio, String nomeHospede, String dataPasseio, String tipoPasseio, String status) {
+            this.idPasseio = idPasseio;
+            this.nomeHospede = nomeHospede;
+            this.dataPasseio = dataPasseio;
+            this.tipoPasseio = tipoPasseio;
+            this.status = status;
+        }
+              
+        public String toString() {
+            return "Passeio{" +
+                    "idPasseio=" + idPasseio +
+                    ", nomeHospede='" + nomeHospede + '\'' +
+                    ", dataPasseio='" + dataPasseio + '\'' +
+                    ", tipoPasseio='" + tipoPasseio + '\'' +
+                    ", status='" + status + '/' +
+                    '}';
+        }
+
+        public int getIdPasseioSimplificado() { 
+        	return idPasseio; 
+        }
+        public String getNomeHospedeSimplificado() { 
+        	return nomeHospede;
+        }
+        public String getDataPasseioSimplificado() { 
+        	return dataPasseio; 
+        }
+        public String getTipoPasseioSimplificado() { 
+        	return tipoPasseio; 
+        }
+        public String getStatusSimplificado() { 
+        	return status; 
+        }
+    }
+	
+
+	
+	public static void BuscarSimplificado(TelaController telaController, String item_pesquisa) {
+		TableView<PasseioSimplificado> tabela_telaPrincipal = telaController.Get_TabelaPrincipal();
+		LocalDate hoje = LocalDate.now();
+		System.out.println("Fazer Busca Inicial? "+TelaController.fazer_busca);
+		System.out.print("Item Para Busca: "+item_pesquisa);
+
+		if(TelaController.fazer_busca == true || item_pesquisa == null || item_pesquisa.isEmpty()) {
+		    System.out.println("\nPreenchendo Tabela Incial...\n");
+		    System.out.print("========= LOG DE BUSCA INICIAL =========\n\n");
+			String sql_busca = "SELECT passeios.id_passeio, passeios.nome_do_hospede, passeios.data_do_passeio, tipos_passeios.descricao AS 'Tipo Passeio', passeios.status_passeio FROM passeios JOIN tipos_passeios ON passeios.tipo_passeio = tipos_passeios.id_tipo_passeio WHERE passeios.data_do_passeio >= ?";
+		    PreparedStatement ps_busca = null;
+		    Connection conn_busca= null;
+		    
+		    try {
+		    	int count = 1;
+		    	conn_busca = Conectar_Banco_Dados.getConnection();
+		        System.out.println("\nConexão estabelecida com sucesso para Pesquisa Das Reservas Futuras: " + (conn_busca != null));
+		        ps_busca = conn_busca.prepareStatement(sql_busca);
+		        ps_busca.setObject(1, hoje);
+		        ResultSet resultado_pesquisa = ps_busca.executeQuery();
+		        
+		        ObservableList<PasseioSimplificado> passeios_achados = FXCollections.observableArrayList();
+		        
+		        while(resultado_pesquisa.next()) {
+		        	String status_convertido;
+		        	System.out.print("\n======== INICIANDO BUSCA DE PASSEIOS: "+count+" ========\n");
+		        	int idPasseio = resultado_pesquisa.getInt("id_passeio");
+		            String nomeHospede = resultado_pesquisa.getString("nome_do_hospede");
+		            String dataPasseio = resultado_pesquisa.getString("data_do_passeio");
+		            String dataPasseio_formatada = Formatar_Datas.Formatar_Para_Usuario(dataPasseio);
+		            String tipoPasseio = resultado_pesquisa.getString("Tipo Passeio");
+		            int status = resultado_pesquisa.getInt("status_passeio");
+		            if(status == 1) {
+		            	status_convertido = "Agendado";
+		            }else {
+		            	status_convertido = "Não Agendado";
+		            }
+
+		            PasseioSimplificado passeios_futuros = new PasseioSimplificado(idPasseio, nomeHospede, dataPasseio_formatada, tipoPasseio, status_convertido);
+		            
+		            passeios_achados.add(passeios_futuros);
+		            System.out.println("======= FIM DA BUSCA DE PASSEIO: "+count+" =======\n");
+		            count++;
+		        }
+		        	DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		        
+		        	ObservableList<PasseioSimplificado> PasseiosFuturos = passeios_achados.stream().filter(p -> {LocalDate dataPasseio = LocalDate.parse(p.getDataPasseioSimplificado(), formatador);return dataPasseio.isAfter(hoje) || dataPasseio.isEqual(hoje) || dataPasseio.isBefore(hoje);}).sorted(Comparator.comparing(p -> LocalDate.parse(p.getDataPasseioSimplificado(), formatador))).collect(Collectors.toCollection(FXCollections::observableArrayList));
+		        	
+		        	tabela_telaPrincipal.setItems(PasseiosFuturos);
+		            System.out.println("Tabela Inciada Com Sucesso!");
+		        System.out.println("\n===== FIM DO LOG DE BUSCA INICIAL ======\n");
+		    }catch (Exception erro_ao_pesquisar) {
+		        erro_ao_pesquisar.printStackTrace();
+		    }
+		    TelaController.Set_Busca_Inicial_False();
+		    System.out.print("Final para fazer busca: "+TelaController.fazer_busca);
+		}else {		
+			System.out.println("\nBuscando Reserva Com Dados: "+item_pesquisa+"\n");
+		    System.out.print("========= LOG DE BUSCA COM DADO =========\n\n");
+			String sql_busca = "SELECT passeios.id_passeio, passeios.nome_do_hospede, passeios.data_do_passeio, tipos_passeios.descricao, passeios.status_passeio FROM passeios JOIN tipos_passeios ON passeios.tipo_passeio = tipos_passeios.id_tipo_passeio WHERE passeios.nome_do_hospede LIKE ?  OR DATE_FORMAT(passeios.data_do_passeio, '%d/%m') LIKE ? AND LENGTH(?) >= 5 OR passeios.id_passeio LIKE ?";
+		    PreparedStatement ps_busca = null;
+		    Connection conn_busca= null;
+		    
+		    try {
+		    	conn_busca = Conectar_Banco_Dados.getConnection();
+		        System.out.println("\nConexão estabelecida com sucesso para Pesquisa Das Reservas Futuras: " + (conn_busca != null));
+		        ps_busca = conn_busca.prepareStatement(sql_busca);
+		        ps_busca.setString(1, item_pesquisa+"%");
+		        ps_busca.setString(2, item_pesquisa+"%");
+		        ps_busca.setString(3, item_pesquisa);
+		        ps_busca.setString(4, item_pesquisa);
+		        ResultSet resultado_pesquisa = ps_busca.executeQuery();
+		        
+		        ObservableList<PasseioSimplificado> passeios_achados = FXCollections.observableArrayList();
+		        
+		        while(resultado_pesquisa.next()) {
+		        	String status_convertido;
+		        	int idPasseio = resultado_pesquisa.getInt("id_passeio");
+		            String nomeHospede = resultado_pesquisa.getString("nome_do_hospede");
+		            String dataPasseio = resultado_pesquisa.getString("data_do_passeio");
+		            String dataPasseio_formatada = Formatar_Datas.Formatar_Para_Usuario(dataPasseio);
+		            String tipoPasseio = resultado_pesquisa.getString("descricao");
+		            int status = resultado_pesquisa.getInt("status_passeio");
+		            if(status == 1) {
+		            	status_convertido = "Agendado";
+		            }else {
+		            	status_convertido = "Não Agendado";
+		            }
+
+		            PasseioSimplificado passeios_futuros = new PasseioSimplificado(idPasseio, nomeHospede, dataPasseio_formatada, tipoPasseio, status_convertido);
+		            
+		            passeios_achados.add(passeios_futuros);
+		        }
+		        	System.out.print("Mostando Todas As Reservas De Passeios de: "+hoje+" em diante\n");
+		        	System.out.print("\nDados Encontrados. Mostrando Na Tabela...\n");
+		        	
+		        	DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		            ObservableList<PasseioSimplificado> PasseiosFuturos = passeios_achados.stream().filter(p -> {LocalDate dataPasseio = LocalDate.parse(p.getDataPasseioSimplificado(), formatador);return dataPasseio.isAfter(hoje) || dataPasseio.isEqual(hoje);}).sorted(Comparator.comparing(p -> LocalDate.parse(p.getDataPasseioSimplificado(), formatador))).collect(Collectors.toCollection(FXCollections::observableArrayList));
+		            ObservableList<PasseioSimplificado> PasseiosAntigos = passeios_achados.stream().filter(p -> {LocalDate dataPasseio = LocalDate.parse(p.getDataPasseioSimplificado(), formatador);return dataPasseio.isBefore(hoje);}).sorted(Comparator.comparing(p -> LocalDate.parse(p.getDataPasseioSimplificado(), formatador))).collect(Collectors.toCollection(FXCollections::observableArrayList));
+		            
+		            ObservableList<PasseioSimplificado> TodosPasseios = FXCollections.observableArrayList();
+		            TodosPasseios.addAll(PasseiosFuturos);
+		            TodosPasseios.addAll(PasseiosAntigos);
+
+		            tabela_telaPrincipal.setItems(TodosPasseios);
+
+		        	TelaController.Set_Busca_Inicial_False();
+		            
+		            System.out.println("Tabela Inciada Com Sucesso!");
+		        System.out.println("\n===== FIM DO LOG DE BUSCA INICIAL ======\n");
+		    }catch (Exception erro_ao_pesquisar) {
+		        erro_ao_pesquisar.printStackTrace();
+		    }
+		}
+	}
+}

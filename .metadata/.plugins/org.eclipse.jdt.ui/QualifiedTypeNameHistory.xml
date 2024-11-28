@@ -4,10 +4,12 @@
     <fullyQualifiedTypeName name="controllers.LoginController"/>
     <fullyQualifiedTypeName name="javafx.scene.control.Alert.AlertType"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
     <fullyQualifiedTypeName name="application.Formatar_Datas"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="application.Buscar_Passeios"/>
-    <fullyQualifiedTypeName name="controllers.TelaController"/>
     <fullyQualifiedTypeName name="java.lang.Object"/>
+    <fullyQualifiedTypeName name="application.App"/>
+    <fullyQualifiedTypeName name="java.time.LocalTime"/>
+    <fullyQualifiedTypeName name="controllers.TelaController"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
 </qualifiedTypeNameHistroy>

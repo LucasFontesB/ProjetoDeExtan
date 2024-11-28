@@ -1,8 +1,7 @@
-/views/
-<<<<<<< HEAD
-/controllers/
+/.classpath
+/.project
+/.settings/
 /application/
-=======
-/application/
-/controllers/
->>>>>>> origin/versao_02
+/build.fxbuild
+/build.fxbuild.xml
+/lib/
