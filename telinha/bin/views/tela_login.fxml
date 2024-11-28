@@ -27,20 +27,20 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>
-                  <Button id="botaologin" fx:id="botao_login" layoutX="50.0" layoutY="251.0" mnemonicParsing="false" onAction="#Validar_Login" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: #4facfe; -fx-text-fill: white; -fx-border-radius: 20; -fx-background-radius: 20; -fx-font-size: 14; -fx-padding: 5; -fx-cursor: hand;" styleClass="botaologin" stylesheets="@../css/style.css" text="Login">
+                  <Button id="botaologin" fx:id="botao_login" layoutX="50.0" layoutY="251.0" mnemonicParsing="false" onAction="#Validar_Login" prefHeight="25.0" prefWidth="182.0" style="-fx-font-size: 14; -fx-padding: 5; -fx-cursor: hand;" styleClass="botaologin" stylesheets="@../css/style.css" text="Login">
                      <font>
                         <Font name="Ravie" size="12.0" />
                      </font></Button>
                   <ImageView fitHeight="118.0" fitWidth="165.0" layoutX="58.0" layoutY="321.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../../../../../../Downloads/Tour_Manager-removebg-preview.png" />
+                        <Image url="@../../../imagens/nometourmanager.png" />
                      </image>
                   </ImageView>
                </children>
             </Pane>
             <ImageView fitHeight="243.0" fitWidth="245.0" layoutX="853.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Downloads/1728685540269%20(1).png" />
+                  <Image url="@../../../imagens/logotourmanager.png" />
                </image>
             </ImageView>     
          </children></AnchorPane>
