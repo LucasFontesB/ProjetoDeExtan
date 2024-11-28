@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuAdicionarUsuarioController">
+   <children>
+      <TextField fx:id="nome_label" layoutX="205.0" layoutY="87.0" prefHeight="25.0" prefWidth="180.0" styleClass="botaoNomeUsu" stylesheets="@../css/style.css" />
+      <CheckBox fx:id="checkbox_administrador" layoutX="222.0" layoutY="282.0" mnemonicParsing="false" styleClass="botaoADMUsu" stylesheets="@../css/style.css" text="Administrador">
+         <font>
+            <Font size="18.0" />
+         </font></CheckBox>
+      <Button fx:id="botao_registrar" layoutX="205.0" layoutY="336.0" mnemonicParsing="false" onAction="#Realizar_Registro" prefHeight="37.0" prefWidth="180.0" style="-fx-cursor: hand;" styleClass="botaoRegistUsu" stylesheets="@../css/style.css" text="Registrar">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Button>
+      <Label layoutX="271.0" layoutY="50.0" text="Nome">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="271.0" layoutY="123.0" text="Senha">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <Label layoutX="229.0" layoutY="200.0" text="Confirmar Senha">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <PasswordField fx:id="senha_label" layoutX="204.0" layoutY="162.0" prefHeight="25.0" prefWidth="180.0" styleClass="botaoSenhaUsu" stylesheets="@../css/style.css" />
+      <PasswordField fx:id="conf_senha_label" layoutX="205.0" layoutY="234.0" prefHeight="25.0" prefWidth="180.0" styleClass="botaoConfSenhaUsu" stylesheets="@../css/style.css" />
+   </children>
+</Pane>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: linear-gradient(to bottom, #0d242a, #71dae9);" styleClass="tabPane" stylesheets="@../css/style.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.TelaController">
+  <tabs>
+    <Tab fx:id="tab_home" style="-fx-background-color: white;" text="Home">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="539.0" prefWidth="895.0">
+               <children>
+                  <TextField fx:id="barra_busca" layoutX="85.0" layoutY="28.0" prefHeight="25.0" prefWidth="926.0" />
+                  <Button fx:id="botao_sair" layoutX="18.0" layoutY="634.0" mnemonicParsing="false" onAction="#Sair_Conta" prefHeight="31.0" prefWidth="66.0" style="-fx-padding: 5; -fx-cursor: hand;" styleClass="botaosair" text="Sair">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="tabela_passeios_futuros" layoutX="85.0" layoutY="76.0" prefHeight="540.0" prefWidth="925.0" style="-fx-background-color: white; -fx-background-color: rgba(255, 255, 255, 0.89);">
+                    <columns>
+                      <TableColumn fx:id="idPasseioColumn" prefWidth="63.0" text="ID Passeio" />
+                      <TableColumn fx:id="nomeHospedeColumn" prefWidth="235.0" text="Nome Hospede" />
+                        <TableColumn fx:id="dataPasseioColumn" prefWidth="116.0" text="Data Do Passeio" />
+                        <TableColumn fx:id="tipoPasseioColumn" prefWidth="135.0" text="Tipo Do Passeio" />
+                        <TableColumn fx:id="statusPasseioColumn" prefWidth="117.0" text="Status" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab fx:id="tab_adicionarPasseios" style="-fx-background-color: white;" text="Adicionar Passeios">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Pane layoutX="78.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="925.0" style="-fx-background-color: white; -fx-background-color: rgba(255, 255, 255, 0.89);">
+                     <children>
+                        <Label layoutX="399.0" layoutY="86.0" text="Nome Do Hóspede">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nome_hospede_label" layoutX="388.0" layoutY="116.0" styleClass="botaoNH" />
+                        <Label layoutX="168.0" layoutY="143.0" text="Data De Passeio">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="data_passeio_label" layoutX="147.0" layoutY="186.0" prefHeight="25.0" prefWidth="149.0" styleClass="botaoData">
+                           <tooltip>
+                              <Tooltip text="gfbnfgbnd" />
+                           </tooltip>
+                        </DatePicker>
+                        <Label layoutX="185.0" layoutY="222.0" text="Valor Total">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="valor_passeio_label" layoutX="146.0" layoutY="257.0" styleClass="botaoVT" />
+                        <Label layoutX="169.0" layoutY="299.0" text="Tipo De Passeio">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="682.0" layoutY="143.0" text="Valor Pago">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="valor_pago_label" layoutX="643.0" layoutY="186.0" styleClass="botaoVP" />
+                        <Label layoutX="626.0" layoutY="299.0" text="Responsável pelo passeio">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="registrar_passeio_botao" layoutX="377.0" layoutY="404.0" mnemonicParsing="false" onAction="#Cadastrar_Passeio" prefHeight="49.0" prefWidth="172.0" style="-fx-text-fill: black; -fx-cursor: hand;" styleClass="botaoPasseio" stylesheets="@../css/style.css" text="Registrar Passeio">
+                           <font>
+                              <Font size="17.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="comprovante_label" layoutX="643.0" layoutY="257.0" onDragDropped="#Copiar_Caminho" styleClass="botaoComprovante">
+                           <contextMenu>
+                              <ContextMenu>
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Arraste e SOlte" />
+                                 </items>
+                              </ContextMenu>
+                           </contextMenu>
+                        </TextField>
+                        <Label layoutX="665.0" layoutY="222.0" text="Comprovante">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="menu_tipo_passeio" layoutX="146.0" layoutY="333.0" prefWidth="150.0" promptText="Selecione o Tipo do Passeio" styleClass="botaoTP" />
+                        <ComboBox fx:id="menu_responsavel" layoutX="643.0" layoutY="333.0" prefWidth="150.0" promptText="Selecione o Responsavel" styleClass="botaoRP" />
+                     </children>
+                  </Pane>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab fx:id="tab_configuracoes" onSelectionChanged="#verificar_adm" style="-fx-background-color: white;" text="Configurações">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Pane layoutX="78.0" layoutY="76.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="925.0" style="-fx-background-color: white; -fx-background-color: rgba(255, 255, 255, 0.89);">
+                     <children>
+                        <Button fx:id="botao_adicionar_colaborador" layoutX="315.0" layoutY="204.0" mnemonicParsing="false" onAction="#Adicionar_Colaborador" prefHeight="39.0" prefWidth="290.0" style="-fx-cursor: hand;" styleClass="botaoColab" text="Adicionar Colaboradores">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botao_adicionar_usuario" layoutX="315.0" layoutY="270.0" mnemonicParsing="false" onAction="#Abrir_Menu_Adicionar_Usuario" prefHeight="39.0" prefWidth="290.0" style="-fx-cursor: hand;" styleClass="botaoUsu" text="Adicionar Usuarios">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botao_relatorio" layoutX="411.0" layoutY="408.0" mnemonicParsing="false" onAction="#Abrir_Menu_Relatorios" styleClass="botaoRela" text="Relatórios">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="botao_adicionar_tipoPasseios" layoutX="315.0" layoutY="141.0" mnemonicParsing="false" onAction="#Adicionar_Passeio" prefHeight="39.0" prefWidth="290.0" style="-fx-cursor: hand;" styleClass="botaoATP" text="Adicionar Tipo De Passeios">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>

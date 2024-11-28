@@ -1,0 +1,194 @@
+.botaologin{
+    -fx-background-color: #4facfe; 
+    -fx-text-fill: white;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.botaologin:hover{
+    -fx-background-color: linear-gradient(to right, #00f2fe, #4facfe);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.tab-pane .tab-header-area {
+    -fx-background-color: linear-gradient(to bottom, #4facfe, #00f2fe); 
+}
+
+.botaosair{
+    -fx-background-color:  #d43418; 
+    -fx-text-fill: white;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
+
+.botaosair:hover{
+    -fx-background-color: linear-gradient(to right, #f71424, #941816);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.botaoPasseio{
+	-fx-background-color: #ffffff; 
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoPasseio:hover{
+    -fx-background-color: linear-gradient(to right, #e4ebea, #71dae9);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.botaoData{
+	-fx-background-color: #ffffff; 
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoVT{
+	-fx-background-color: #ffffff; 
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoVP{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoNH{
+	-fx-background-color: #ffffff; 
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoComprovante{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoTP{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoRP{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoATP{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoColab{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoColab:hover{
+	-fx-background-color: linear-gradient(to right, #e4ebea, #71dae9);
+	-fx-scale-x: 1.02;
+	-fx-scale-y: 1.02;
+}
+
+.botaoRela{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoUsu{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoUsu:hover{
+	-fx-background-color: linear-gradient(to right, #e4ebea, #71dae9);
+	-fx-scale-x: 1.02;
+	-fx-scale-y: 1.02;
+	
+}
+
+
+.botaoRegistUsu{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoRegistUsu:hover{
+	-fx-background-color: linear-gradient(to right, #e4ebea, #71dae9);
+	-fx-scale-x: 1.02;
+	-fx-scale-y: 1.02;	
+	
+}
+
+.botaoNomeUsu{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoSenhaUsu{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoConfSenhaUsu{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoADMUsu{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+}
+
+.botaoTeleColab{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoRegistColab{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}
+
+.botaoRegistColab:hover{
+	-fx-background-color: linear-gradient(to right, #e4ebea, #71dae9);
+	-fx-scale-x: 1.02;
+	-fx-scale-y: 1.02;	
+	
+}
+
+.botaoNomeColab{
+	-fx-background-color: #ffffff; 
+	-fx-background-color: rgba(255, 255, 255, 0.50);
+	-fx-border-color: #000000;
+	-fx-border-radius: 5px;
+}

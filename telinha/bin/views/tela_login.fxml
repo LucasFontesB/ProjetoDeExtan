@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: Black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(to bottom, #0d242a, #71dae9);">
+         <children>
+            <Pane layoutX="399.0" layoutY="108.0" prefHeight="502.0" prefWidth="281.0" style="-fx-background-color: white; -fx-background-color: rgba(255, 255, 255, 0.89); -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0.1, 0, 5);">
+               <children>
+                  <Label layoutX="40.0" layoutY="64.0" prefHeight="46.0" prefWidth="203.0" text="Área de Login">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="campo_senha" layoutX="50.0" layoutY="196.0" prefHeight="25.0" prefWidth="182.0" />
+                  <Label layoutX="50.0" layoutY="173.0" text="Senha">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Button id="botaologin" fx:id="botao_login" layoutX="50.0" layoutY="251.0" mnemonicParsing="false" onAction="#Validar_Login" prefHeight="25.0" prefWidth="182.0" style="-fx-font-size: 14; -fx-padding: 5; -fx-cursor: hand;" styleClass="botaologin" stylesheets="@../css/style.css" text="Login">
+                     <font>
+                        <Font name="Ravie" size="12.0" />
+                     </font></Button>
+                  <ImageView fitHeight="118.0" fitWidth="165.0" layoutX="58.0" layoutY="321.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../imagens/nometourmanager.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <ImageView fitHeight="243.0" fitWidth="245.0" layoutX="853.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../imagens/logotourmanager.png" />
+               </image>
+            </ImageView>     
+         </children></AnchorPane>
+  </items>
+</SplitPane>

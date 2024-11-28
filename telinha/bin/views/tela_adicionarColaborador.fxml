@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuAdicionarColaborador">
+   <children>
+      <Button fx:id="botao_registrar_colaborador" layoutX="187.0" layoutY="290.0" mnemonicParsing="false" onAction="#Registrar_Colaborador" prefHeight="45.0" prefWidth="201.0" style="-fx-cursor: hand;" styleClass="botaoRegistColab" stylesheets="@../css/style.css" text="Registrar">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+      <TextField fx:id="nome_colaborador_label" layoutX="187.0" layoutY="124.0" prefHeight="25.0" prefWidth="201.0" styleClass="botaoNomeColab" stylesheets="@../css/style.css" />
+      <TextField fx:id="telefone_colaborador_label" layoutX="187.0" layoutY="207.0" prefHeight="25.0" prefWidth="201.0" styleClass="botaoTeleColab" stylesheets="@../css/style.css" />
+      <Label layoutX="186.0" layoutY="82.0" text="Nome Do Colaborador">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="189.0" layoutY="164.0" text="Telefone Para Contato">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
