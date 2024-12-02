@@ -7,22 +7,27 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuPasseioController">
    <children>
       <Label layoutX="14.0" layoutY="14.0" text="Nome Do Hóspede" />
-      <Label fx:id="nome_hospede_label" layoutX="14.0" layoutY="31.0" text="Label" />
       <Label layoutX="14.0" layoutY="77.0" text="Data Do Passeio" />
-      <Label fx:id="data_passeio_label" layoutX="14.0" layoutY="94.0" text="Label" />
       <Label layoutX="14.0" layoutY="140.0" text="Data De Registro" />
-      <Label fx:id="data_registro_label" layoutX="14.0" layoutY="157.0" text="Label" />
       <Label layoutX="14.0" layoutY="200.0" text="Usuario De Registro" />
-      <Label fx:id="usuario_registro_label" layoutX="14.0" layoutY="217.0" text="Label" />
       <Label layoutX="241.0" layoutY="14.0" text="ID do Passeio" />
-      <Label fx:id="id_passeio_label" layoutX="241.0" layoutY="31.0" text="Label" />
       <Label layoutX="241.0" layoutY="77.0" text="Status Do Passeio" />
-      <Label fx:id="status_passeio_label" layoutX="241.0" layoutY="94.0" text="Label" />
       <Label layoutX="447.0" layoutY="14.0" text="Valor Do Passeio" />
-      <Label fx:id="valor_passeio_label" layoutX="447.0" layoutY="31.0" text="Label" />
       <Label layoutX="241.0" layoutY="140.0" text="Nome Do Colaborador Do Passeio" />
-      <Label fx:id="nome_colaborador_label" layoutX="241.0" layoutY="157.0" text="Label" />
       <Label layoutX="241.0" layoutY="200.0" text="Tipo Do Passeio" />
-      <Label fx:id="tipo_passeio_label" layoutX="241.0" layoutY="217.0" text="Label" />
+      <TextField fx:id="nome_hospede_entry" layoutX="14.0" layoutY="36.0" text="" />
+      <Button fx:id="botao_editar_passeio" layoutX="163.0" layoutY="325.0" mnemonicParsing="false" onAction="#Editar_Passeio" text="Editar Passeio" />
+      <TextField fx:id="data_passeio_entry" layoutX="14.0" layoutY="99.0" />
+      <TextField fx:id="data_registro_entry" layoutX="14.0" layoutY="162.0" />
+      <TextField fx:id="usuario_registro_entry" layoutX="14.0" layoutY="222.0" />
+      <TextField fx:id="id_passeio_entry" layoutX="238.0" layoutY="36.0" />
+      <TextField fx:id="status_passeio_entry" layoutX="238.0" layoutY="99.0" />
+      
+      <TextField fx:id="valor_passeio_entry" layoutX="447.0" layoutY="36.0" />
+      <Button fx:id="botao_salvar_alteracoes" layoutX="163.0" layoutY="325.0" mnemonicParsing="false" onAction="#Salvar_Alteracoes" prefHeight="25.0" prefWidth="89.0" text="Salvar" />
+      <ComboBox fx:id="tipo_passeio_entry" layoutX="240.0" layoutY="222.0" prefWidth="150.0" />
+      <ComboBox fx:id="nome_colaborador_entry" layoutX="237.0" layoutY="162.0" prefWidth="150.0" />
+      <Button fx:id="botao_cancelar_alteracao" layoutX="376.0" layoutY="325.0" mnemonicParsing="false" onAction="#Cancelar_Alteracoes" prefHeight="25.0" prefWidth="92.0" text="Cancelar" />
+      <Button fx:id="botao_excluir_passeio" layoutX="376.0" layoutY="325.0" mnemonicParsing="false" onAction="#Excluir_Passeio" text="Excluir Passeio" />
    </children>
 </Pane>
