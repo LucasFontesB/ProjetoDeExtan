@@ -16,9 +16,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 public class MenuPasseioController {
@@ -71,10 +73,11 @@ public class MenuPasseioController {
             Parent root = fxmlLoader.load();
             MenuPasseioController controller = fxmlLoader.getController();
             controller.Mostrar_Passeio(id);
-            Stage stage = new Stage();
-            stage.setTitle("Gerenciador De Passeios");
-            stage.setScene(new Scene(root));
-            stage.show();
+            Stage telapasseio = new Stage();
+            telapasseio.setTitle("Gerenciador De Passeios");
+            telapasseio.setScene(new Scene(root));
+            telapasseio.show();
+            
         } catch (Exception erro_ao_abrir_tela_principal) {
             erro_ao_abrir_tela_principal.printStackTrace();
         }
@@ -228,11 +231,7 @@ public class MenuPasseioController {
 		        }
 		        
 		        tipo_passeio_entry.setPromptText(tipoPasseio);
-		        
-		        
             }
-            
-
             System.out.println("Edição Cancelada Com Sucesso\n");
         }catch (Exception erro_ao_definir_usuario_logado) {
       	  erro_ao_definir_usuario_logado.printStackTrace();
@@ -254,8 +253,33 @@ public class MenuPasseioController {
     }
 
     @FXML
-    void Excluir_Passeio(ActionEvent event) {
-
+    void Excluir_Passeio(ActionEvent event) {	
+    	System.out.print("\nid para apagar: "+id_passeio);
+    	System.out.println("\nExcluindo Passeio...\n");
+		String sql_excluir_passeio = "DELETE FROM passeios WHERE id_passeio = ?";
+        PreparedStatement ps_excluir_passeio = null;
+        Connection conn_excluir_passeio = null;
+        
+        try {
+        	conn_excluir_passeio = Conectar_Banco_Dados.getConnection();
+            System.out.println("Conexão estabelecida com sucesso para Apagar Passeio: " + (conn_excluir_passeio != null));
+            ps_excluir_passeio = conn_excluir_passeio.prepareStatement(sql_excluir_passeio);
+            ps_excluir_passeio.setInt(1, id_passeio);
+            ps_excluir_passeio.executeUpdate();
+            
+            System.out.println("Passeio Excluido Com Sucesso\n");
+        }catch (Exception erro_ao_definir_usuario_logado) {
+      	  	erro_ao_definir_usuario_logado.printStackTrace();
+        }
+    	
+    	Alert passeio_excluido = new Alert(AlertType.INFORMATION);
+    	passeio_excluido.setTitle("Sucesso!");
+    	passeio_excluido.setHeaderText(null);
+    	passeio_excluido.setContentText("Passeio Excluido Com Sucesso");
+    	passeio_excluido.showAndWait();
+    	
+    	Stage tela_principal = (Stage) botao_excluir_passeio.getScene().getWindow();
+  	  	tela_principal.close();
     }
     
     @FXML
@@ -276,7 +300,6 @@ public class MenuPasseioController {
     	botao_editar_passeio.setVisible(false);
     	botao_excluir_passeio.setVisible(false);
     	botao_cancelar_alteracao.setVisible(true);
-    	
     }
     
     @FXML
