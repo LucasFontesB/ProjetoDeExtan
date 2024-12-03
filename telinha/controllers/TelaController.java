@@ -16,6 +16,8 @@ import javafx.scene.input.MouseEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import application.Buscar_Passeios;
 
@@ -93,6 +95,9 @@ public class TelaController {
 
     @FXML
     private DatePicker data_passeio_label;
+    
+    @FXML
+    private DatePicker data_pagamento;
 
     @FXML
     private Button botao_adicionar_usuario;
@@ -208,7 +213,7 @@ public class TelaController {
             
             try {
             	conn_buscar_tipos_responsaveis_passeiosos = Conectar_Banco_Dados.getConnection();
-                System.out.println("Conexão estabelecida com sucesso para Registrar Horário No Registra Turno: " + (conn_buscar_tipos_responsaveis_passeiosos != null));
+                System.out.println("Conexão estabelecida com sucesso para Buscar tipo de passeios registrados: " + (conn_buscar_tipos_responsaveis_passeiosos != null));
                 ps_buscar_tipos_responsaveis_passeiosos = conn_buscar_tipos_responsaveis_passeiosos.prepareStatement(sql_buscar_tipos_responsaveis_passeios);
                 ResultSet tipos_passeios_achados = ps_buscar_tipos_responsaveis_passeiosos.executeQuery();
                 
@@ -220,7 +225,7 @@ public class TelaController {
                 passeiosList.addAll(tipos_passeios);
                 menu_tipo_passeio.setItems(passeiosList);
                 
-                System.out.println("Horário Resgistrado Com Sucesso\n");
+                System.out.println("Tipos achados!\n");
             }catch (Exception erro_ao_definir_usuario_logado) {
           	  erro_ao_definir_usuario_logado.printStackTrace();
             }finally {
@@ -376,6 +381,14 @@ public class TelaController {
         alert.showAndWait();
     }
     
+    private void Mostrar_Alerta_Sucesso(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+    
     @FXML
     void Cadastrar_Passeio(ActionEvent event) {
     	float valor_total = 0;
@@ -384,12 +397,15 @@ public class TelaController {
     	String valor_pagamento_string = null;
     	String tipo_passeio_string = null;
     	LocalDateTime data_hora_passeio = null;
+    	LocalDateTime data_hora_pagamento = null;
     	String nome_hospede_passeio = null;
     	String hora_passeio_string = null;
     	String valor_total_string = null;
     	String valor_total_formatado = null;
     	String responsavel_string = null;
     	int esta_agendado_formatado = 0;
+    	int id_tipo_passeio = 0;
+    	int id_responsavel_passeio = 0;
     	
     	try {
     	    nome_hospede_passeio = nome_hospede_label.getText();
@@ -470,7 +486,7 @@ public class TelaController {
     	        return;
     	    } else {
     	        menu_responsavel.setStyle("");
-    	        responsavel_string = tipo_passeio_obj.toString();
+    	        responsavel_string = responsavel_passeio_obj.toString();
     	    }
     	    
     	    if(esta_agendado.isSelected()) {
@@ -497,11 +513,96 @@ public class TelaController {
     	        return;
     	    }
     	    
-
+    	    LocalDate data_pagamento_valor = data_pagamento.getValue();
+	        if (data_pagamento_valor == null) {
+	            Mostrar_Alerta("Erro De Preenchimento", "Por favor, selecione uma data!");
+	            data_pagamento.setStyle("-fx-border-color: red");
+	            return;
+	        } else {
+	        	LocalTime hora = LocalTime.parse("00:00:00");
+	        	data_hora_pagamento = LocalDateTime.of(data_pagamento_valor, hora);;
+	            data_passeio_label.setStyle("");
+	        }
+	        
+	        
     	} catch (Exception e) {
     	    Mostrar_Alerta("Erro Inesperado", "Um erro ocorreu: " + e.getMessage());
     	}
-    
+    	
+    	System.out.print("Buscando por id do tipo de passeio...\n");
+    	
+    	String sql_buscar_tipo_id = "SELECT id_tipo_passeio FROM tipos_passeios WHERE descricao = ?";
+        PreparedStatement ps_buscar_tipo_id = null;
+        Connection conn_buscar_tipo_id = null;
+    		
+        try {
+        	conn_buscar_tipo_id = Conectar_Banco_Dados.getConnection();
+            System.out.println("Conexão estabelecida com sucesso para Buscar Id Do Passeio: " + (conn_buscar_tipo_id != null));
+            ps_buscar_tipo_id = conn_buscar_tipo_id.prepareStatement(sql_buscar_tipo_id);
+            ps_buscar_tipo_id.setString(1, tipo_passeio_string);
+            ResultSet id_tipo_passeio_result = ps_buscar_tipo_id.executeQuery();
+            
+            if(id_tipo_passeio_result.next()) {
+            	id_tipo_passeio = id_tipo_passeio_result.getInt("id_tipo_passeio");
+            }
+        }catch (Exception erro_ao_definir_usuario_logado) {
+        	  erro_ao_definir_usuario_logado.printStackTrace();
+          }finally {
+        	
+          }
+        
+        System.out.print("Buscando por id do responsavel pelo passeio...\n");
+    	
+    	String sql_buscar_responsavel_id = "SELECT id_colaborador FROM colaboradores WHERE nome = ?";
+        PreparedStatement ps_buscar_responsavel_id = null;
+        Connection conn_buscar_responsavel_id = null;
+    		
+        try {
+        	conn_buscar_responsavel_id = Conectar_Banco_Dados.getConnection();
+            System.out.println("Conexão estabelecida com sucesso para Buscar Id Do Colaborador: " + (conn_buscar_responsavel_id != null));
+            ps_buscar_responsavel_id = conn_buscar_responsavel_id.prepareStatement(sql_buscar_responsavel_id);
+            ps_buscar_responsavel_id.setString(1, responsavel_string);
+            ResultSet id_responsavel_passeio_result = ps_buscar_responsavel_id.executeQuery();
+            
+            if(id_responsavel_passeio_result.next()) {
+            	id_responsavel_passeio = id_responsavel_passeio_result.getInt("id_colaborador");
+            }
+        }catch (Exception erro_ao_definir_usuario_logado) {
+        	  erro_ao_definir_usuario_logado.printStackTrace();
+          }finally {
+        	
+          }
+        
+        System.out.println("Registrando Passeio...\n");
+
+        System.out.println("Registrando Passeio...\n");
+		String sql_registrar_passeio = "INSERT INTO passeios (nome_do_hospede, data_do_passeio, valor, tipo_passeio, data_de_registro_passeio, id_responsavel_registro_passeio, id_colaborador_passeio, status_passeio)"
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps_registrar_passeio = null;
+        Connection conn_registrar_passeio = null;
+        
+        try {
+        	int id_usuario = LoginController.Get_Id_Usuario_Logado();
+        	LocalDateTime data_hora_atual = LocalDateTime.now();
+        	conn_registrar_passeio = Conectar_Banco_Dados.getConnection();
+            System.out.println("Conexão estabelecida com sucesso para Registrar Passeio: " + (conn_registrar_passeio != null));
+            ps_registrar_passeio = conn_registrar_passeio.prepareStatement(sql_registrar_passeio);
+            ps_registrar_passeio.setString(1,nome_hospede_passeio);
+            ps_registrar_passeio.setObject(2, data_hora_passeio);
+            ps_registrar_passeio.setObject(3, valor_total);
+            ps_registrar_passeio.setObject(4, id_tipo_passeio);
+            ps_registrar_passeio.setObject(5, data_hora_atual);
+            ps_registrar_passeio.setObject(6, id_usuario);
+            ps_registrar_passeio.setObject(7, id_responsavel_passeio);
+            ps_registrar_passeio.setObject(8, esta_agendado_formatado);
+            ps_registrar_passeio.executeUpdate();
+            
+            System.out.println("Passeio Resgistrado Com Sucesso\n");
+            Mostrar_Alerta_Sucesso("Sucesso!", "Passeio Registrado Com Sucesso!");
+            
+        }catch (Exception erro_registrar_passeio) {
+        	erro_registrar_passeio.printStackTrace();
+        }
     }
 
     @FXML
