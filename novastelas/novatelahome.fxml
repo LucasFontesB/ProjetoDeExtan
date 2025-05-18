@@ -12,27 +12,27 @@
          <children>
             <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="22.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img-home/add_img.png" />
+                  <Image url="@imagens/add_img.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="22.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img-home/config_img.png" />
+                  <Image url="@imagens/config_img.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="22.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img-home/Design%20sem%20nome%20(23).png" />
+                  <Image url="@imagens/Design%20sem%20nome%20(23).png" />
                </image>
             </ImageView>
             <ImageView fitHeight="110.0" fitWidth="103.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img-home/logotourmanager.png" />
+                  <Image url="@imagens/logotourmanager.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="21.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@img-home/tezxte%20(2).png" />
+                  <Image url="@imagens/tezxte%20(2).png" />
                </image>
             </ImageView>
          </children>
@@ -42,7 +42,7 @@
             <TextField id="buscar" layoutX="338.0" layoutY="16.0" prefHeight="32.0" prefWidth="575.0" styleClass="buscar" stylesheets="@styles.css" />
             <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../ProjetoDeExtan/ProjetoDeExtan/imagens/account_img.png" />
+                  <Image url="@imagens/account_img.png" />
                </image>
             </ImageView>
             <Text layoutX="84.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="70.341796875">
@@ -52,7 +52,7 @@
             </Text>
             <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="924.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../Downloads/tezxte%20(1).png" />
+                  <Image url="@imagens/tezxte%20(1).png" />
                </image>
             </ImageView>
          </children>
