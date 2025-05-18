@@ -78,22 +78,21 @@
                               <Font size="17.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="comprovante_label" layoutX="643.0" layoutY="257.0" onDragDropped="#Copiar_Caminho" styleClass="botaoComprovante">
-                           <contextMenu>
-                              <ContextMenu>
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="Arraste e SOlte" />
-                                 </items>
-                              </ContextMenu>
-                           </contextMenu>
-                        </TextField>
-                        <Label layoutX="665.0" layoutY="222.0" text="Comprovante">
+                        <ComboBox fx:id="menu_tipo_passeio" layoutX="146.0" layoutY="333.0" prefWidth="150.0" promptText="Selecione o Tipo do Passeio" styleClass="botaoTP" />
+                        <ComboBox fx:id="menu_responsavel" layoutX="643.0" layoutY="333.0" prefWidth="150.0" promptText="Selecione o Responsavel" styleClass="botaoRP" />
+                        <CheckBox fx:id="esta_agendado" layoutX="413.0" layoutY="381.0" mnemonicParsing="false" text="Está Agendado" />
+                        <Label layoutX="409.0" layoutY="143.0" text="Hora Do Passeio">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ComboBox fx:id="menu_tipo_passeio" layoutX="146.0" layoutY="333.0" prefWidth="150.0" promptText="Selecione o Tipo do Passeio" styleClass="botaoTP" />
-                        <ComboBox fx:id="menu_responsavel" layoutX="643.0" layoutY="333.0" prefWidth="150.0" promptText="Selecione o Responsavel" styleClass="botaoRP" />
+                        <TextField fx:id="hora_passeio" layoutX="388.0" layoutY="186.0" />
+                        <DatePicker fx:id="data_pagamento" layoutX="389.0" layoutY="258.0" prefHeight="25.0" prefWidth="149.0" />
+                        <Label layoutX="395.0" layoutY="222.0" text="Data Do Pagamento">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </Pane>
                </children></AnchorPane>
@@ -120,7 +119,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button fx:id="botao_adicionar_tipoPasseios" layoutX="315.0" layoutY="141.0" mnemonicParsing="false" onAction="#Adicionar_Passeio" prefHeight="39.0" prefWidth="290.0" style="-fx-cursor: hand;" styleClass="botaoATP" text="Adicionar Tipo De Passeios">
+                        <Button fx:id="botao_adicionar_tipoPasseios" layoutX="315.0" layoutY="141.0" mnemonicParsing="false" onAction="#Cadastrar_Passeio" prefHeight="39.0" prefWidth="290.0" style="-fx-cursor: hand;" styleClass="botaoATP" text="Adicionar Tipo De Passeios">
                            <font>
                               <Font size="18.0" />
                            </font>
