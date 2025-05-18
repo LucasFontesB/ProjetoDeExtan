@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="690.0" prefWidth="1118.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane id="paneesquerda" prefHeight="690.0" prefWidth="100.0" styleClass="paneesquerda" stylesheets="@styles.css">
+         <children>
+            <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="22.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img-home/add_img.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="22.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img-home/config_img.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="22.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img-home/Design%20sem%20nome%20(23).png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="110.0" fitWidth="103.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img-home/logotourmanager.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="63.0" fitWidth="56.0" layoutX="21.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img-home/tezxte%20(2).png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="100.0" prefHeight="63.0" prefWidth="1018.0" style="-fx-background-color: #E1DEDE;">
+         <children>
+            <TextField id="buscar" layoutX="338.0" layoutY="16.0" prefHeight="32.0" prefWidth="575.0" styleClass="buscar" stylesheets="@styles.css" />
+            <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="35.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ProjetoDeExtan/ProjetoDeExtan/imagens/account_img.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="84.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="70.341796875">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="32.0" fitWidth="37.0" layoutX="924.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Downloads/tezxte%20(1).png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <TableView id="tablecompleto" editable="true" layoutX="99.0" layoutY="62.0" prefHeight="626.0" prefWidth="1020.0" styleClass="tablecompleto" stylesheets="@styles.css">
+        <columns>
+          <TableColumn id="passeiocor" prefWidth="158.0" styleClass="passeiocor" text="ID Passeio" />
+          <TableColumn id="nomehospede" minWidth="-1.0" prefWidth="201.0" styleClass="nomehospede" text="Nome do Hospede" />
+            <TableColumn id="datapasseio" minWidth="-1.0" prefWidth="205.0" styleClass="datapasseio" text="Data do Passeio" />
+            <TableColumn id="tipodopasseio" minWidth="-1.0" prefWidth="231.0" styleClass="tipodopasseio" text="Tipo do Passeio" />
+            <TableColumn id="status" minWidth="-1.0" prefWidth="232.0" styleClass="status" text="Status" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </children>
+</Pane>
