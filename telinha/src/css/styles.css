@@ -1,0 +1,84 @@
+
+.passeiocor{
+	-fx-background-color:  #6fb7e0;
+    -fx-background-radius: 0px;
+	-fx-border-width: 0.5px;
+	-fx-border-color: black
+	
+}
+.tablecompleto{
+    -fx-background-radius: 5px;
+    -fx-background-color: #00000000;
+}
+
+.nomehospede{
+    -fx-background-color:  #6fb7e0;
+    -fx-background-radius: 0px;
+	-fx-border-width: 2px;
+	-fx-border-width: 0.5px;
+	-fx-border-color: black
+}
+
+.datapasseio{
+    -fx-background-color:  #6fb7e0;
+    -fx-background-radius: 0px;
+	-fx-border-width: 2px;
+	-fx-border-width: 0.5px;
+	-fx-border-color: black
+}
+
+.tipodopasseio{
+    -fx-background-color:  #6fb7e0;
+    -fx-background-radius: 0px;
+	-fx-border-width: 2px;
+	-fx-border-width: 0.5px;
+	-fx-border-color: black
+}
+
+.status{
+    -fx-background-color:  #6fb7e0;
+    -fx-background-radius: 0px;
+	-fx-border-width: 2px;
+	-fx-border-width: 0.5px;
+	-fx-border-color: black
+}
+
+.buscar{
+    -fx-background-radius: 15px;
+    -fx-border-color: #000000;
+	-fx-border-radius: 15px;
+    -fx-border-width: 2px;
+    
+}
+
+.paneesquerda{
+    -fx-background-color: linear-gradient(to bottom, #2191c9 10%, #6fb7e0 40%, #79c2ec 60%, #2c80aa 90%);
+
+}
+
+.botalogintela{
+    -fx-background-color: linear-gradient(to right, #060a0a, #a3a5a7);
+    -fx-background-radius: 10px;
+    -fx-text-fill: #ffffff
+}
+
+.botalogintela:hover{
+    -fx-background-color: linear-gradient(to right, #26dddd, #003249);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.abalogin{
+    -fx-background-color: rgb(255, 255, 255);
+}
+
+.fundologin{
+    -fx-background-color: white;
+}
+
+.colocarsenha{
+    -fx-border-radius: 10px;
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-background-raiuds: 10px;
+}

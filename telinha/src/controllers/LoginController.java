@@ -222,7 +222,7 @@ public class LoginController {
 		     		           }}
 		                      
 		                      try {
-		                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/tela_teste.fxml"));
+		                          FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/novatelahome.fxml"));
 		                          Parent root = fxmlLoader.load();		                     
 		                          Stage stage = new Stage();
 		                          stage.setResizable(false);

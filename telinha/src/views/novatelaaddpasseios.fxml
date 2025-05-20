@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AddPasseiosController">
+   <children>
+      <Pane layoutX="35.0" layoutY="41.0" prefHeight="332.0" prefWidth="537.0" style="-fx-background-color: transparent; -fx-border-color: black;">
+         <children>
+            <Label layoutX="14.0" layoutY="14.0" text="Nome Do Hóspede">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nome_hospede_label" layoutX="14.0" layoutY="31.0" />
+            <Label layoutX="193.0" layoutY="14.0" text="Data Do Passeio">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <DatePicker fx:id="data_passeio_label" layoutX="193.0" layoutY="31.0" prefHeight="25.0" prefWidth="149.0" />
+            <Line endX="400.0" layoutX="120.0" layoutY="74.0" startX="-105.0" />
+            <Label layoutX="372.0" layoutY="14.0" text="Hora Do passeio">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="hora_passeio" layoutX="372.0" layoutY="31.0" />
+            <Label layoutX="15.0" layoutY="96.0" text="Valor Total">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="registrar_passeio_botao" layoutX="222.0" layoutY="279.0" mnemonicParsing="false" onAction="#Cadastrar_Passeio" text="Registrar">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <CheckBox fx:id="esta_agendado" layoutX="229.0" layoutY="256.0" mnemonicParsing="false" text="Agendado" />
+            <Label layoutX="15.0" layoutY="146.0" text="Valor Pago">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="16.0" layoutY="197.0" prefHeight="20.0" prefWidth="130.0" text="Data De Pagamento">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="194.0" layoutY="96.0" text="Tipo De Passeio">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="194.0" layoutY="146.0" text="Responsável Do Passeio">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="menu_tipo_passeio" layoutX="195.0" layoutY="116.0" prefHeight="25.0" prefWidth="149.0" promptText="Selecione o Tipo do Passeio" />
+            <ComboBox fx:id="menu_responsavel" layoutX="193.0" layoutY="167.0" prefHeight="25.0" prefWidth="149.0" promptText="Selecione o Responsavel" />
+            <DatePicker fx:id="data_pagamento" layoutX="14.0" layoutY="220.0" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="valor_passeio_label" layoutX="14.0" layoutY="116.0" />
+            <TextField fx:id="valor_pago_label" layoutX="14.0" layoutY="167.0" />
+         </children>
+      </Pane>
+      <Label layoutX="217.0" layoutY="14.0" text="Registro De Passeio">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
